@@ -71,7 +71,7 @@ gradle build
     }
 ```
 
-### 2.3 Precompiled Service API测试
+### 2.3 Solidity合约文件转Java合约文件测试
 提供SolidityFunctionWrapperGeneratorTest测试类测试Solidity合约文件转Java合约文件。示例测试如下：
 ```API
     @Test
