@@ -12,6 +12,4 @@ groupChannelConnectionsConfig:
 channelService:
   groupId: 1
   orgID: fisco
-  connectSeconds: 10
-  connectSleepPerMillis: 10
 
