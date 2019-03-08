@@ -1,6 +1,6 @@
 # Spring Boot Starter
 
-该项目是基于FISCO-BCOS Java SDK的spring boot版本的示例项目，提供FISCO BCOS区块链应用开发的基本框架，并提供基本的Java SDK测试案例，帮助开发者基于FISCO BCOS区块链快速进行应用开发。
+该项目是基于FISCO-BCOS Java SDK的spring boot版本的示例项目，提供FISCO BCOS区块链应用开发的基本框架，并提供基本的Java SDK测试案例，帮助开发者基于FISCO BCOS区块链快速进行应用开发。此版本只支持[FISCO BCOS 2.0](https://fisco-bcos-documentation.readthedocs.io/zh_CN/release-2.0/docs/introduction.html)
 
 ## 1 快速启动
 
@@ -110,7 +110,7 @@ gradle build
         System.out.println("generate successfully");
     }
 ```
-该测试案例将src/test/resources/contract目录下的所有Solidity合约文件(默认提供HelloWorld合约)均转为相应的abi和bin文件，保存在src/test/resources/solidity目录下。然后将abi文件和对应的bin文件组合转换为Java合约文件，保存在src/test/java/org/fisco/bcos/temp目录下。Java SDK将利用Java合约文件进行合约部署与调用。
+该测试案例将src/test/resources/contract目录下的所有Solidity合约文件(默认提供HelloWorld合约)均转为相应的abi和bin文件，保存在src/test/resources/solidity目录下。然后将abi文件和对应的bin文件组合转换为Java合约文件，保存在src/test/java/org/fisco/bcos/temp目录下。SDK将利用Java合约文件进行合约部署与调用。
 
 ### 2.4 部署和调用合约测试
 提供ContractTest测试类测试部署和调用合约。示例测试如下：
@@ -131,7 +131,7 @@ gradle build
     }
 ```
 
-## 3 附录
-- 了解FISCO BCOS项目，请参考[FISCO BCOS文档](https://fisco-bcos-documentation.readthedocs.io/zh_CN/feature-2.0.0/docs/introduction.html)。
-- 了解FISCO BCOS的Java SDK，请参考[Java SDK文档](https://fisco-bcos-documentation.readthedocs.io/zh_CN/feature-2.0.0/docs/sdk/index.html)。
+## 3 相关链接
+- 了解FISCO BCOS项目，请参考[FISCO BCOS文档](https://fisco-bcos-documentation.readthedocs.io/zh_CN/release-2.0/docs/introduction.html)。
+- 了解FISCO BCOS的Java SDK，请参考[web3sdk文档](https://fisco-bcos-documentation.readthedocs.io/zh_CN/release-2.0/docs/sdk/sdk.html)。
 - 了解spring boot，请参考[Spring Boot官网](https://spring.io/guides/gs/spring-boot/)。
