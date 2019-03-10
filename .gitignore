@@ -15,7 +15,7 @@ hs_err_pid*
 .gradle
 /build
 /log
-/doc
+
 */out/
 out/
 gradle.properties
