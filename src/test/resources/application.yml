@@ -1,15 +1,15 @@
-encryptType: 0
+encryptType: 0  # 0:standard, 1:guomi
 groupChannelConnectionsConfig:
   allChannelConnections:
-  - groupId: 1
+  - groupId: 1  #group ID
     connectionsStr:
-                    - 127.0.0.1:20200
+                    - 127.0.0.1:20200  # node listen_ip:channel_listen_port
                     - 127.0.0.1:20201
   - groupId: 2
     connectionsStr:
                     - 127.0.0.1:20202
                     - 127.0.0.1:20203
 channelService:
-  groupId: 1
-  orgID: fisco
+  groupId: 1 # The specified group to which the SDK connects
+  orgID: fisco # agency name
 

@@ -34,8 +34,12 @@ gradle-app.setting
 
 .idea
 *.iml
-
+*.crt
+*.key
+src/test/resources/solidity/*
+src/test/java/org/fisco/bcos/temp/*
 # OS X
 .DS_Store
 
 /target
+
