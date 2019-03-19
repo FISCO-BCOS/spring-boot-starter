@@ -21,7 +21,7 @@ targetCompatibility = 1.8
 
 repositories {
     maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
-    maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
+//    maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
     maven { url "https://dl.bintray.com/ethereum/maven/" }
     mavenCentral()
 }
@@ -31,7 +31,8 @@ dependencies {
 //        exclude module: 'solcJ-all'
 //    }
 //    compile 'org.ethereum:solcJ-all:0.5.2'
-    compile group:"org.fisco-bcos", name:"web3sdk", version:"2.0-SNAPSHOT", changing: true
+//    compile group:"org.fisco-bcos", name:"web3sdk", version:"2.0-SNAPSHOT", changing: true
+    compile	'org.fisco-bcos:web3sdk:2.0.0-rc1'
     compile 'org.projectlombok:lombok:1.16.20'
     compile "org.springframework.boot:spring-boot-autoconfigure",
             "org.springframework.boot:spring-boot-actuator",
@@ -45,9 +46,8 @@ dependencies {
                  "org.springframework.boot:spring-boot-starter-test"
 }
 
-configurations.all {
-//    check for updates every build
-    resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
-}
+//configurations.all {
+//    resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
+//}
 
 
