@@ -1,19 +1,20 @@
 package org.fisco.bcos.solidity;
 
+import static org.fisco.bcos.web3j.solidity.compiler.SolidityCompiler.Options.ABI;
+import static org.fisco.bcos.web3j.solidity.compiler.SolidityCompiler.Options.BIN;
+import static org.fisco.bcos.web3j.solidity.compiler.SolidityCompiler.Options.INTERFACE;
+import static org.fisco.bcos.web3j.solidity.compiler.SolidityCompiler.Options.METADATA;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.Arrays;
+
 import org.apache.commons.io.FileUtils;
 import org.fisco.bcos.web3j.codegen.SolidityFunctionWrapperGenerator;
 import org.fisco.bcos.web3j.solidity.compiler.CompilationResult;
 import org.fisco.bcos.web3j.solidity.compiler.SolidityCompiler;
 import org.junit.Test;
 import org.springframework.core.io.ClassPathResource;
-
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.Arrays;
-
-import static org.fisco.bcos.web3j.solidity.compiler.SolidityCompiler.Options.*;
 
 public class SolidityFunctionWrapperGeneratorTest  {
 
@@ -48,7 +49,6 @@ public class SolidityFunctionWrapperGeneratorTest  {
             System.out.println("Err: '" + res.errors + "'");
             CompilationResult result = CompilationResult.parse(res.output);
             System.out.println("contractname  " + solFile.getName());
-            Path source = Paths.get(solFile.getPath());
             String contractname = solFile.getName().split("\\.")[0];
             CompilationResult.ContractMetadata a = result.getContract(solFile.getName().split("\\.")[0]);
             System.out.println("abi   " + a.abi);
