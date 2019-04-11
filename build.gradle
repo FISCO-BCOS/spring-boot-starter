@@ -14,15 +14,6 @@ version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
-configurations {
-	all {
-		exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
-	}
-	compileOnly {
-		extendsFrom annotationProcessor
-	}
-}
-
 
 repositories {
     maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
@@ -38,4 +29,14 @@ dependencies {
 	
 	compile	'org.fisco-bcos:web3sdk:2.0.0-rc1'
     compile 'org.projectlombok:lombok:1.16.20'
+}
+
+configurations {
+	all {
+		exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+		exclude group: 'org.slf4j', module: 'slf4j-log4j12'
+	}
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
 }
