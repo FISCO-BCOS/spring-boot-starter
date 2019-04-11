@@ -49,9 +49,3 @@ src/test/java/org/fisco/bcos/temp/*
 .settings/
 bin/
 
-# project config and other tmp files
-src/test/java/org/fisco/bcos/temp/*
-src/test/resources/ca.crt
-src/test/resources/node.crt
-src/test/resources/node.key
-src/test/resources/solidity/*.bin
