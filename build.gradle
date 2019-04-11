@@ -1,0 +1,41 @@
+plugins {
+	id 'org.springframework.boot' version '2.1.4.RELEASE'
+	id 'java'
+}
+
+apply plugin: 'io.spring.dependency-management'
+apply plugin: 'idea'
+apply plugin: 'eclipse'
+
+description = 'Spring Boot Starter'
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+configurations {
+	all {
+		exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+	}
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+
+repositories {
+    maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
+    maven { url "https://dl.bintray.com/ethereum/maven/" }
+    mavenCentral()
+}
+
+dependencies {
+	compile 'org.springframework.boot:spring-boot-starter-log4j2'
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
+	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	
+	compile	'org.fisco-bcos:web3sdk:2.0.0-rc1'
+    compile 'org.projectlombok:lombok:1.16.20'
+}
