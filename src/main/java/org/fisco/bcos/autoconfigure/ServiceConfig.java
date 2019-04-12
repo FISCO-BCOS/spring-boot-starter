@@ -12,7 +12,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 @Data
 @Configuration
-@ConfigurationProperties(prefix = "channelService")
+@ConfigurationProperties(prefix = "channel-service")
 public class ServiceConfig {
 
     private String orgID;
