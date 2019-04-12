@@ -22,7 +22,8 @@ repositories {
 }
 
 dependencies {
-	compile 'org.springframework.boot:spring-boot-starter-log4j2'
+	compile 'org.springframework.boot:spring-boot-starter-logging'
+	compile 'org.codehaus.groovy:groovy-all:2.5.6'
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
@@ -33,7 +34,6 @@ dependencies {
 
 configurations {
 	all {
-		exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
 		exclude group: 'org.slf4j', module: 'slf4j-log4j12'
 	}
 	compileOnly {
