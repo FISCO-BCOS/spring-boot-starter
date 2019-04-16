@@ -43,3 +43,9 @@ src/test/java/org/fisco/bcos/temp/*
 
 /target
 
+# eclipse
+.classpath
+.project
+.settings/
+bin/
+
