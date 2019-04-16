@@ -22,7 +22,7 @@ public class Application {
         ChannelEthereumService channelEthereumService = new ChannelEthereumService();
         service.run();
         channelEthereumService.setChannelService(service);
-        channelEthereumService.setTimeout(10000);
+        channelEthereumService.setTimeout(30000);
         return Web3j.build(channelEthereumService,service.getGroupId());
     }
 }
