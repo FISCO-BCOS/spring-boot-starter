@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @ConfigurationProperties(prefix = "encrypt-type")
 public class EncryptTypeConfig {
-    private  int encryptType ;
+    private int encryptType;
 
     @Bean
     public EncryptType getEncryptType() {

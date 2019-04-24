@@ -16,21 +16,12 @@ import lombok.Data;
 @ConfigurationProperties(prefix = "group-channel-connections-config")
 public class GroupChannelConnectionsPropertyConfig {
 
-
     List<ChannelConnections> allChannelConnections = new ArrayList<>();;
 
     @Bean
-     public GroupChannelConnectionsConfig getGroupChannelConnections() {
+    public GroupChannelConnectionsConfig getGroupChannelConnections() {
         GroupChannelConnectionsConfig groupChannelConnectionsConfig = new GroupChannelConnectionsConfig();
         groupChannelConnectionsConfig.setAllChannelConnections(allChannelConnections);
         return groupChannelConnectionsConfig;
-    }
-
-    public List<ChannelConnections> getAllChannelConnections() {
-        return allChannelConnections;
-    }
-
-    public void setAllChannelConnections(List<ChannelConnections> allChannelConnections) {
-        this.allChannelConnections = allChannelConnections;
     }
 }
