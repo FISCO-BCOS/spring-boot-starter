@@ -16,6 +16,9 @@ import org.fisco.bcos.web3j.solidity.compiler.SolidityCompiler;
 import org.junit.Test;
 import org.springframework.core.io.ClassPathResource;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public class SolidityFunctionWrapperGeneratorTest  {
 
     protected String tempDirPath =  new File("src/test/java/").getAbsolutePath();
@@ -45,14 +48,14 @@ public class SolidityFunctionWrapperGeneratorTest  {
         for (File solFile : solFiles) {
 
             SolidityCompiler.Result res = SolidityCompiler.compile(solFile, true, ABI, BIN, INTERFACE, METADATA);
-            System.out.println("Out: '" + res.output + "'");
-            System.out.println("Err: '" + res.errors + "'");
+            log.info("Out: '{}'" , res.output );
+            log.info("Err: '{}'" , res.errors );
             CompilationResult result = CompilationResult.parse(res.output);
-            System.out.println("contractname  " + solFile.getName());
+            log.info("contractname  {}" , solFile.getName());
             String contractname = solFile.getName().split("\\.")[0];
             CompilationResult.ContractMetadata a = result.getContract(solFile.getName().split("\\.")[0]);
-            System.out.println("abi   " + a.abi);
-            System.out.println("bin   " + a.bin);
+            log.info("abi   {}" , a.abi);
+            log.info("bin   {}" , a.bin);
             FileUtils.writeStringToFile(new File("src/test/resources/solidity/" + contractname + ".abi"), a.abi);
             FileUtils.writeStringToFile(new File("src/test/resources/solidity/" + contractname + ".bin"), a.bin);
             String binFile;
