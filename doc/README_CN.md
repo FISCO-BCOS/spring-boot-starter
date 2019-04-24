@@ -16,7 +16,7 @@
 $ git clone https://github.com/FISCO-BCOS/spring-boot-starter.git
 ```
 #### 节点证书配置
-将节点所在目录`nodes/${ip}/sdk`下的`ca.crt`、`node.crt`和`node.key`文件拷贝到项目的`src/test/resources`目`录下供SDK使用。
+将节点所在目录`nodes/${ip}/sdk`下的`ca.crt`、`node.crt`和`node.key`文件拷贝到项目的`src/main/resources`目`录下供SDK使用。
 
 #### 配置文件设置
 spring boot项目的配置文件application.yml如下图所示，其中加了注释的内容根据区块链节点配置做相应修改。
