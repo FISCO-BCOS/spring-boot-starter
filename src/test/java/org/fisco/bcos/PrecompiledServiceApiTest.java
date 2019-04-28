@@ -22,19 +22,18 @@ public class PrecompiledServiceApiTest {
 
     @Before
     public void setUp() throws Exception {
-        credentials = GenCredential.create("b83261efa42895c38c6c2364ca878f43e77f3cddbc922bf57d0d48070f79feb6");
+        credentials =
+                GenCredential.create(
+                        "b83261efa42895c38c6c2364ca878f43e77f3cddbc922bf57d0d48070f79feb6");
         if (credentials == null) {
             throw new Exception("create Credentials failed");
         }
     }
 
     @After
-    public void tearDown() {
+    public void tearDown() {}
 
-    }
-
-    @Autowired
-    Web3j web3j;
+    @Autowired Web3j web3j;
 
     @Test
     public void testSystemConfigService() throws Exception {
@@ -44,5 +43,4 @@ public class PrecompiledServiceApiTest {
         System.out.println(value);
         assertTrue("2000".equals(value));
     }
-
 }
