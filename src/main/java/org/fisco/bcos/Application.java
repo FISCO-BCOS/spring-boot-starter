@@ -8,7 +8,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 
-
 @SpringBootApplication
 @EnableConfigurationProperties
 public class Application {
@@ -23,6 +22,6 @@ public class Application {
         service.run();
         channelEthereumService.setChannelService(service);
         channelEthereumService.setTimeout(30000);
-        return Web3j.build(channelEthereumService,service.getGroupId());
+        return Web3j.build(channelEthereumService, service.getGroupId());
     }
 }
