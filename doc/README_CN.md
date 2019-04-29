@@ -1,6 +1,11 @@
 [English](../README.md) / 中文
 
 # Spring Boot Starter
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
+[![Build Status](https://travis-ci.org/FISCO-BCOS/console.svg?branch=master)](https://travis-ci.org/FISCO-BCOS/console)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/a2a6c2eb499e42739d066ff775d1b288)](https://www.codacy.com/app/fisco/console?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=FISCO-BCOS/console&amp;utm_campaign=Badge_Grade)
+[![GitHub All Releases](https://img.shields.io/github/downloads/FISCO-BCOS/spring-boot-starter/total.svg)](https://github.com/FISCO-BCOS/spring-boot-starter)
+---
 
 该项目是基于[Web3SDK](https://fisco-bcos-documentation.readthedocs.io/zh_CN/release-2.0/docs/sdk/sdk.html)的spring boot版本的示例项目。提供FISCO BCOS区块链应用开发的基本框架和基本的测试案例，帮助开发者基于FISCO BCOS区块链快速进行应用开发。**此版本只支持**[FISCO BCOS 2.0](https://fisco-bcos-documentation.readthedocs.io/zh_CN/release-2.0/docs/introduction.html)。
 
@@ -138,6 +143,12 @@ public void deployAndCallHelloWorld() throws Exception {
     }
 }
 ```
+## 贡献代码
+欢迎参与FISCO BCOS的社区建设：
+- 点亮我们的小星星(点击项目左上方Star按钮)。
+- 提交代码(Pull requests)，参考我们的[代码贡献流程](CONTRIBUTING_CN.md)。
+- [提问和提交BUG](https://github.com/FISCO-BCOS/spring-boot-starter/issues)。
+- 在[微信群](images/WeChatQR.jpeg)和[Gitter](https://gitter.im/fisco-bcos/Lobby)参与讨论。
 
 ## 相关链接
 - 了解FISCO BCOS项目，请参考[FISCO BCOS文档](https://fisco-bcos-documentation.readthedocs.io/zh_CN/release-2.0/docs/introduction.html)。
