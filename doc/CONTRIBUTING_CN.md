@@ -44,12 +44,10 @@
 
 持续集成框架
 
-* travis-ci: [![Build Status](https://travis-ci.org/FISCO-BCOS/web3sdk.svg?branch=release-2.0.1)](https://travis-ci.org/FISCO-BCOS/web3sdk)
+* travis-ci: [![Build Status](https://travis-ci.org/FISCO-BCOS/spring-boot-starter.svg?branch=master)](https://travis-ci.org/FISCO-BCOS/spring-boot-starter)
 
 
 代码质量
-
-* Codacy: [![Codacy Badge](https://api.codacy.com/project/badge/Grade/c9769615cc364a408969b088e90d7912)](https://www.codacy.com/app/fisco/web3sdk?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=FISCO-BCOS/web3sdk&amp;utm_campaign=Badge_Grade)
-
+* CodeFactor: [![CodeFactor](https://www.codefactor.io/repository/github/fisco-bcos/spring-boot-starter/badge)](https://www.codefactor.io/repository/github/fisco-bcos/spring-boot-starter)
 
 
