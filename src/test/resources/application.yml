@@ -3,13 +3,10 @@ group-channel-connections-config:
   all-channel-connections:
   - group-id: 1  #group ID
     connections-str:
-                    - 127.0.0.1:20200  # node listen_ip:channel_listen_port
-                    - 127.0.0.1:20201
+                    - 127.0.0.1:21200  # node listen_ip:channel_listen_port
+                    - 127.0.0.1:21201
  
 channel-service:
   group-id: 1 # The specified group to which the SDK connects
   org-id: fisco # agency name
-
-user-key:
-  user-key: xxxxxxxx # user key 
 
