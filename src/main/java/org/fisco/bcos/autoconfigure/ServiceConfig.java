@@ -1,13 +1,12 @@
 package org.fisco.bcos.autoconfigure;
 
+import lombok.Data;
 import org.fisco.bcos.channel.client.Service;
 import org.fisco.bcos.channel.handler.GroupChannelConnectionsConfig;
 import org.fisco.bcos.constants.ConnectConstants;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
-import lombok.Data;
 
 @Data
 @Configuration

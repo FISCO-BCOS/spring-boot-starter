@@ -2,21 +2,18 @@ package org.fisco.bcos;
 
 import static org.junit.Assert.assertTrue;
 
+import com.fasterxml.jackson.databind.deser.Deserializers.Base;
 import org.fisco.bcos.web3j.crypto.Credentials;
 import org.fisco.bcos.web3j.precompile.config.SystemConfigSerivce;
 import org.fisco.bcos.web3j.protocol.Web3j;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import com.fasterxml.jackson.databind.deser.Deserializers.Base;
-
 
 public class PrecompiledServiceApiTest extends Base {
 
-    @Autowired
-    Web3j web3j;
-    
-    @Autowired
-    private Credentials credentials;
+    @Autowired Web3j web3j;
+
+    @Autowired private Credentials credentials;
 
     @Test
     public void testSystemConfigService() throws Exception {
@@ -26,5 +23,4 @@ public class PrecompiledServiceApiTest extends Base {
         System.out.println(value);
         assertTrue("2000".equals(value));
     }
-
 }
