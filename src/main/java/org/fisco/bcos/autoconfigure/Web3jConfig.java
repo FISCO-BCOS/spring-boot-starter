@@ -24,14 +24,13 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class Web3jConfig {
-    
+
     @Bean
     public Web3j getWeb3j(Service service) throws Exception {
         ChannelEthereumService channelEthereumService = new ChannelEthereumService();
         service.run();
         channelEthereumService.setChannelService(service);
         channelEthereumService.setTimeout(ConnectConstants.TIME_OUT);
-        return Web3j.build(channelEthereumService,service.getGroupId());
+        return Web3j.build(channelEthereumService, service.getGroupId());
     }
-
 }

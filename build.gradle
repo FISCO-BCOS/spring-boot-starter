@@ -34,6 +34,7 @@ check.dependsOn -= tasks['verifyGoogleJavaFormat']
 repositories {
     maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
     maven { url "https://dl.bintray.com/ethereum/maven/" }
+    maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
     mavenCentral()
 }
 
@@ -44,8 +45,8 @@ dependencies {
 	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	
-	compile	'org.fisco-bcos:web3sdk:2.0.0-rc1'
-  compile 'org.projectlombok:lombok:1.18.6'
+	compile	'org.fisco-bcos:web3sdk:2.0.2-SNAPSHOT'
+    compile 'org.projectlombok:lombok:1.18.6'
 }
 
 configurations {
