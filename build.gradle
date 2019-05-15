@@ -23,12 +23,14 @@ googleJavaFormat {
   exclude '**/temp/*.java'
   exclude '**/solidity/*.java'
 }
+
 verifyGoogleJavaFormat {
   source = sourceSets*.allJava
   include '**/*.java'
   exclude '**/temp/*.java'
   exclude '**/solidity/*.java'
 }
+
 check.dependsOn -= tasks['verifyGoogleJavaFormat']
 
 repositories {
