@@ -1,6 +1,7 @@
 package org.fisco.bcos;
 
 import static org.junit.Assert.assertTrue;
+
 import org.fisco.bcos.web3j.crypto.Credentials;
 import org.fisco.bcos.web3j.precompile.config.SystemConfigSerivce;
 import org.fisco.bcos.web3j.protocol.Web3j;

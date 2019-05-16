@@ -12,7 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 @Slf4j
 public class Web3jApiTest extends BaseTest {
 
-    @Autowired Web3j web3j;
+    @Autowired private Web3j web3j;
 
     @Test
     public void getBlockNumber() throws IOException {
