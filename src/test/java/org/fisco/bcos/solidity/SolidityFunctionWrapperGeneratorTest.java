@@ -76,6 +76,7 @@ public class SolidityFunctionWrapperGeneratorTest  {
     }
 
     public SolidityFunctionWrapperGeneratorTest() throws IOException {
+        
     }
 
 }
