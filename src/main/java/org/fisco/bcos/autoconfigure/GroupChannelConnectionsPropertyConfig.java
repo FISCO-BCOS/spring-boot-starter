@@ -14,7 +14,7 @@ import org.springframework.context.annotation.Configuration;
 @ConfigurationProperties(prefix = "group-channel-connections-config")
 public class GroupChannelConnectionsPropertyConfig {
 
-    List<ChannelConnections> allChannelConnections = new ArrayList<>();;
+    List<ChannelConnections> allChannelConnections = new ArrayList<>();
 
     @Bean
     public GroupChannelConnectionsConfig getGroupChannelConnections() {
