@@ -3,19 +3,14 @@ package org.fisco.bcos.server;
 import java.util.ArrayList;
 import java.util.List;
 import javax.net.ssl.SSLException;
-import org.fisco.bcos.Application;
+import org.fisco.bcos.BaseTest;
 import org.fisco.bcos.channel.handler.ChannelConnections;
 import org.fisco.bcos.channel.proxy.Server;
 import org.junit.Ignore;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
-import org.springframework.test.context.junit4.SpringRunner;
 
-@RunWith(SpringRunner.class)
-@SpringBootTest(classes = Application.class)
-public class ProxyServerTest {
+public class ProxyServerTest extends BaseTest {
     @Ignore
     @Test
     public void proxyServerTest() throws SSLException {
