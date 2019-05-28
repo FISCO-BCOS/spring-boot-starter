@@ -33,7 +33,7 @@ public class CredentialsConfig {
 
     @Bean
     public Credentials getCredentials() throws Exception {
-        log.info("userKye : {}", userKey);
+        log.info("userKey : {}", userKey);
         Credentials credentials = GenCredential.create(userKey);
         if (credentials == null) {
             throw new Exception("create Credentials failed");
