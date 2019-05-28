@@ -20,26 +20,30 @@ Build FISCO BCOS blockchain, please check out [here](https://fisco-bcos-document
 $ git clone https://github.com/FISCO-BCOS/spring-boot-starter.git
 ```
 #### Certificate Configuration
-Copy the `ca.crt`, `node.crt`, and `node.key` files in the node's directory `nodes/${ip}/sdk` to the project's `src/main/resources` directory.
+Copy the `ca.crt`, `node.crt`, and `node.key` files in the node's directory `nodes/${ip}/sdk` to the project's `src/test/resources` directory.
 
 #### Settings
 The `application.yml` of the spring boot project is shown below, and the commented content is modified according to the blockchain node configuration.
   
 ```yml
-encryptType: 0  # 0:standard, 1:guomi
-groupChannelConnectionsConfig:
-  allChannelConnections:
-  - groupId: 1  #group ID
-    connectionsStr:
+encrypt-type: 0  # 0:standard, 1:guomi
+group-channel-connections-config:
+  all-channel-connections:
+  - group-id: 1  # group ID
+    connections-str:
                     - 127.0.0.1:20200  # node listen_ip:channel_listen_port
                     - 127.0.0.1:20201
-  - groupId: 2
-    connectionsStr:
-                    - 127.0.0.1:20202
+  - group-id: 2  
+    connections-str:
+                    - 127.0.0.1:20202  # node listen_ip:channel_listen_port
                     - 127.0.0.1:20203
-channelService:
-  groupId: 1 # The specified group to which the SDK connects
-  orgID: fisco # agency name
+ 
+channel-service:
+  group-id: 1 # The specified group to which the SDK connects
+  agency-name: fisco # agency name
+
+user-key:
+  user-key: 3bed914595c159cbce70ec5fb6aff3d6797e0c5ee5a7a9224a21cae8932d84a4 # user key 
 ```
 A detail description of the SDK configuration for the project, please checkout [ here](https://fisco-bcos-documentation.readthedocs.io/zh_CN/release-2.0/docs/sdk/sdk.html#sdk)。
 
