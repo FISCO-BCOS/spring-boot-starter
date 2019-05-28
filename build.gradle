@@ -31,8 +31,6 @@ verifyGoogleJavaFormat {
   exclude '**/solidity/*.java'
 }
 
-check.dependsOn -= tasks['verifyGoogleJavaFormat']
-
 repositories {
     maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
     maven { url "https://dl.bintray.com/ethereum/maven/" }
@@ -48,7 +46,7 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	
 	compile	'org.fisco-bcos:web3sdk:2.0.0-rc2'
-  	compile 'org.projectlombok:lombok:1.18.6'
+  compile 'org.projectlombok:lombok:1.18.6'
 }
 
 configurations {
