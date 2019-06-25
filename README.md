@@ -26,7 +26,9 @@ Copy the `ca.crt`, `node.crt`, and `node.key` files in the node's directory `nod
 The `application.yml` of the spring boot project is shown below, and the commented content is modified according to the blockchain node configuration.
   
 ```yml
-encrypt-type: 0  # 0:standard, 1:guomi
+encrypt-type: # 0:standard, 1:guomi
+ encrypt-type: 0 
+ 
 group-channel-connections-config:
   all-channel-connections:
   - group-id: 1  # group ID
@@ -42,8 +44,10 @@ channel-service:
   group-id: 1 # The specified group to which the SDK connects
   agency-name: fisco # agency name
 
-user-key:
-  user-key: 3bed914595c159cbce70ec5fb6aff3d6797e0c5ee5a7a9224a21cae8932d84a4 # user key 
+accounts:
+  pem-file: 0xcdcce60801c0a2e6bb534322c32ae528b9dec8d2.pem # PEM format account file
+  p12-file: 0x98333491efac02f8ce109b0c499074d47e7779a6.p12 # PKCS12 format account file
+  password: 123456 # PKCS12 format account password
 ```
 A detail description of the SDK configuration for the project, please checkout [ here](https://fisco-bcos-documentation.readthedocs.io/zh_CN/release-2.0/docs/sdk/sdk.html#sdk)。
 
