@@ -79,7 +79,7 @@ public class AccountConfig {
         p12Manager.setP12File("classpath:" + p12File);
         p12Manager.setPassword(password);
         p12Manager.load();
-        ECKeyPair keyPair = p12Manager.getECKeyPair(password);
+        ECKeyPair keyPair = p12Manager.getECKeyPair();
         Credentials credentials = GenCredential.create(keyPair.getPrivateKey().toString(16));
         System.out.println(credentials.getAddress());
         return credentials;
