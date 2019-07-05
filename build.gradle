@@ -47,6 +47,7 @@ dependencies {
 	
 	compile	'org.fisco-bcos:web3sdk:2.0.4'
   compile 'org.projectlombok:lombok:1.18.6'
+
 }
 
 configurations {

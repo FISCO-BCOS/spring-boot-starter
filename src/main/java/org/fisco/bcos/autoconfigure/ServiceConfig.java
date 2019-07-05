@@ -16,7 +16,7 @@ import org.springframework.context.annotation.Configuration;
 public class ServiceConfig {
 
     private String agencyName;
-    private static int groupId = 1;
+    private int groupId;
 
     @Bean
     public Service getService(GroupChannelConnectionsConfig groupChannelConnectionsConfig) {
