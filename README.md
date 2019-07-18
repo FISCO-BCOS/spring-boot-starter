@@ -55,6 +55,7 @@ A detail description of the SDK configuration for the project, please checkout [
 Compile and run test cases:
 ```
 $ ./gradlew build
+$ ./gradlew test
 ```
 When all test cases run successfully, it means that the blockchain is running normally,and the project is connected to the blockchain through the SDK. You can develop your blockchain application based on the project。
 
