@@ -20,7 +20,7 @@ Build FISCO BCOS blockchain, please check out [here](https://fisco-bcos-document
 $ git clone https://github.com/FISCO-BCOS/spring-boot-starter.git
 ```
 #### Certificate Configuration
-Copy the `ca.crt`, `node.crt`, and `node.key` files in the node's directory `nodes/${ip}/sdk` to the project's `src/test/resources` directory.
+Copy the `ca.crt`, `node.crt`, and `node.key` files in the node's directory `nodes/${ip}/sdk` to the project's `src/main/resources` directory.
 
 #### Settings
 The `application.yml` of the spring boot project is shown below, and the commented content is modified according to the blockchain node configuration.
