@@ -32,6 +32,7 @@ verifyGoogleJavaFormat {
 }
 
 check.dependsOn.remove(test)
+check.dependsOn.remove(verifyGoogleJavaFormat)
 
 repositories {
     maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }

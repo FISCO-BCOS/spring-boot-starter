@@ -23,6 +23,6 @@ script: |
   ./nodes/127.0.0.1/start_all.sh
   ./nodes/127.0.0.1/fisco-bcos -v
   cp nodes/127.0.0.1/sdk/* src/main/resources/
-  ./gradlew verGJF
-  ./gradlew build
-  ./gradlew test
+  ./gradlew clean verGJF
+  ./gradlew clean build
+  ./gradlew clean test
