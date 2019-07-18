@@ -20,7 +20,7 @@
 $ git clone https://github.com/FISCO-BCOS/spring-boot-starter.git
 ```
 #### 节点证书配置
-将节点所在目录`nodes/${ip}/sdk`下的`ca.crt`、`node.crt`和`node.key`文件拷贝到项目的`src/test/resources`目录下供SDK使用。
+将节点所在目录`nodes/${ip}/sdk`下的`ca.crt`、`node.crt`和`node.key`文件拷贝到项目的`src/main/resources`目`录下供SDK使用。
 
 #### 配置文件设置
 spring boot项目的配置文件application.yml如下图所示，其中加了注释的内容根据区块链节点配置做相应修改。
@@ -55,6 +55,7 @@ accounts:
 编译并运行测试案例，在项目根目录下运行：
 ```
 $ ./gradlew build
+$ ./gradlew test
 ```
 当所有测试案例运行成功，则代表区块链运行正常，该项目通过SDK连接区块链正常。开发者可以基于该项目进行具体应用开发。
 
