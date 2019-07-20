@@ -59,6 +59,8 @@ $ ./gradlew test
 ```
 When all test cases run successfully, it means that the blockchain is running normally,and the project is connected to the blockchain through the SDK. You can develop your blockchain application based on the project。
 
+**Note: If you run the demo project in IntelliJ IDEA or Eclipse, please use gradle wrapper mode and install the [Lombok plugin](https://projectlombok.org/setup/intellij). In addition, please enable `Annotation Processors` in `Settings` for IntelliJ IDEA.**
+
 ## Test Case Introduction
 
 The sample project provides test cases for developers to use. The test cases are mainly divided into tests for [Web3j API](https://fisco-bcos-documentation.readthedocs.io/zh_CN/release-2.0/docs/sdk/sdk.html#web3j-api), [Precompiled Serveice API](https://fisco-bcos-documentation.readthedocs.io/zh_CN/release-2.0/docs/sdk/sdk.html#precompiled-service-api), Solidity contract file to Java contract file, deployment and call contract.
