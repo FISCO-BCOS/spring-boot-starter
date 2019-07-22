@@ -1,3 +1,5 @@
+![](https://github.com/FISCO-BCOS/FISCO-BCOS/raw/master/docs/images/FISCO_BCOS_Logo.svg?sanitize=true)
+
 English / [中文](doc/README_CN.md)
 
 # Spring Boot Starter
@@ -6,12 +8,12 @@ English / [中文](doc/README_CN.md)
 [![CodeFactor](https://www.codefactor.io/repository/github/fisco-bcos/spring-boot-starter/badge)](https://www.codefactor.io/repository/github/fisco-bcos/spring-boot-starter)
 ---
 
-The sample spring boot project is based on [Web3SDK](https://fisco-bcos-documentation.readthedocs.io/zh_CN/release-2.0/docs/sdk/sdk.html), which provides the basic framework and basic test cases for blockchain application and helps developers to quickly develop applications based on the FISCO BCOS blockchain. **The version only supports** [FISCO BCOS 2.0](https://fisco-bcos-documentation.readthedocs.io/zh_CN/release-2.0/docs/introduction.html).
+The sample spring boot project is based on [Web3SDK](https://fisco-bcos-documentation.readthedocs.io/zh_CN/latest/docs/sdk/sdk.html), which provides the basic framework and basic test cases for blockchain application and helps developers to quickly develop applications based on the FISCO BCOS blockchain. **The version only supports** [FISCO BCOS 2.0](https://fisco-bcos-documentation.readthedocs.io/zh_CN/latest/).
 
 ## Quickstart
 
 ### Precodition
-Build FISCO BCOS blockchain, please check out [here](https://fisco-bcos-documentation.readthedocs.io/zh_CN/release-2.0/docs/installation.html)。
+Build FISCO BCOS blockchain, please check out [here](https://fisco-bcos-documentation.readthedocs.io/zh_CN/latest/docs/installation.html)。
 
 ### Configuration
 
@@ -49,11 +51,12 @@ accounts:
   p12-file: 0x98333491efac02f8ce109b0c499074d47e7779a6.p12 # PKCS12 format account file
   password: 123456 # PKCS12 format account password
 ```
-A detail description of the SDK configuration for the project, please checkout [ here](https://fisco-bcos-documentation.readthedocs.io/zh_CN/release-2.0/docs/sdk/sdk.html#sdk)。
+A detail description of the SDK configuration for the project, please checkout [ here](https://fisco-bcos-documentation.readthedocs.io/zh_CN/latest/docs/sdk/sdk.html#sdk)。
 
 ### Run
 Compile and run test cases:
 ```
+$ cd spring-boot-starter
 $ ./gradlew build
 $ ./gradlew test
 ```
@@ -63,7 +66,7 @@ When all test cases run successfully, it means that the blockchain is running no
 
 ## Test Case Introduction
 
-The sample project provides test cases for developers to use. The test cases are mainly divided into tests for [Web3j API](https://fisco-bcos-documentation.readthedocs.io/zh_CN/release-2.0/docs/sdk/sdk.html#web3j-api), [Precompiled Serveice API](https://fisco-bcos-documentation.readthedocs.io/zh_CN/release-2.0/docs/sdk/sdk.html#precompiled-service-api), Solidity contract file to Java contract file, deployment and call contract.
+The sample project provides test cases for developers to use. The test cases are mainly divided into tests for [Web3j API](https://fisco-bcos-documentation.readthedocs.io/zh_CN/latest/docs/sdk/sdk.html#web3j-api), [Precompiled Serveice API](https://fisco-bcos-documentation.readthedocs.io/zh_CN/latest/docs/sdk/sdk.html#precompiled-service-api), Solidity contract file to Java contract file, deployment and call contract.
 
 ### Web3j API Test
 Provide `Web3jApiTest` class to test the Web3j API. The sample test is as follows:
@@ -160,8 +163,8 @@ public void deployAndCallHelloWorld() throws Exception {
 - Discuss in [WeChat group](doc/images/WeChatQR.jpeg)  or [Gitter](https://gitter.im/fisco-bcos/Lobby).
 
 ## Related Links
-- For FISCO BCOS project, please check out [FISCO BCOS Documentation](https://fisco-bcos-documentation.readthedocs.io/zh_CN/release-2.0/docs/introduction.html)。
-- For Web3SDK project, please check out [Web3SDK Documentation](https://fisco-bcos-documentation.readthedocs.io/zh_CN/release-2.0/docs/sdk/sdk.html)。
+- For FISCO BCOS project, please check out [FISCO BCOS Documentation](https://fisco-bcos-documentation.readthedocs.io/zh_CN/latest/docs/introduction.html)。
+- For Web3SDK project, please check out [Web3SDK Documentation](https://fisco-bcos-documentation.readthedocs.io/zh_CN/lastest/docs/sdk/sdk.html)。
 - For Spring Boot applications, please check out [Spring Boot](https://spring.io/guides/gs/spring-boot/)。
 
 ## Community
