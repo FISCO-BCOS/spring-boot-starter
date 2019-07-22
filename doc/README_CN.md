@@ -1,3 +1,5 @@
+![](https://github.com/FISCO-BCOS/FISCO-BCOS/raw/master/docs/images/FISCO_BCOS_Logo.svg?sanitize=true)
+
 [English](../README.md) / 中文
 
 # Spring Boot Starter
@@ -6,12 +8,12 @@
 [![CodeFactor](https://www.codefactor.io/repository/github/fisco-bcos/spring-boot-starter/badge)](https://www.codefactor.io/repository/github/fisco-bcos/spring-boot-starter)
 ---
 
-该项目是基于[Web3SDK](https://fisco-bcos-documentation.readthedocs.io/zh_CN/release-2.0/docs/sdk/sdk.html)的spring boot版本的示例项目。提供FISCO BCOS区块链应用开发的基本框架和基本的测试案例，帮助开发者基于FISCO BCOS区块链快速进行应用开发。**此版本只支持**[FISCO BCOS 2.0](https://fisco-bcos-documentation.readthedocs.io/zh_CN/release-2.0/docs/introduction.html)。
+该项目是基于[Web3SDK](https://fisco-bcos-documentation.readthedocs.io/zh_CN/latest/docs/sdk/sdk.html)的spring boot版本的示例项目。提供FISCO BCOS区块链应用开发的基本框架和基本的测试案例，帮助开发者基于FISCO BCOS区块链快速进行应用开发。**此版本只支持**[FISCO BCOS 2.0](https://fisco-bcos-documentation.readthedocs.io/zh_CN/latest/docs/introduction.html)。
 
 ## 快速启动
 
 ### 前置条件
-搭建FISCO BCOS区块链，具体步骤[参考这里](https://fisco-bcos-documentation.readthedocs.io/zh_CN/release-2.0/docs/installation.html)。
+搭建FISCO BCOS区块链，具体步骤[参考这里](https://fisco-bcos-documentation.readthedocs.io/zh_CN/latest/docs/installation.html)。
 
 ### 配置
 
@@ -49,11 +51,12 @@ accounts:
   p12-file: 0x98333491efac02f8ce109b0c499074d47e7779a6.p12 # PKCS12 格式账户文件
   password: 123456 # PKCS12 格式账户密码
 ```
-项目中关于SDK配置的详细说明请[参考这里](https://fisco-bcos-documentation.readthedocs.io/zh_CN/release-2.0/docs/sdk/sdk.html#sdk)。
+项目中关于SDK配置的详细说明请[参考这里](https://fisco-bcos-documentation.readthedocs.io/zh_CN/latest/docs/sdk/sdk.html#sdk)。
 
 ### 运行
 编译并运行测试案例，在项目根目录下运行：
 ```
+$ cd spring-boot-starter
 $ ./gradlew build
 $ ./gradlew test
 ```
@@ -63,7 +66,7 @@ $ ./gradlew test
 
 ## 测试案例介绍
 
-该示例项目提供的测试案例，供开发者参考使用。测试案例主要分为对[Web3j API](https://fisco-bcos-documentation.readthedocs.io/zh_CN/release-2.0/docs/sdk/sdk.html#web3j-api)，[Precompiled Serveice API](https://fisco-bcos-documentation.readthedocs.io/zh_CN/release-2.0/docs/sdk/sdk.html#precompiled-service-api)、Solidity合约文件转Java合约文件、部署和调用合约的测试。
+该示例项目提供的测试案例，供开发者参考使用。测试案例主要分为对[Web3j API](https://fisco-bcos-documentation.readthedocs.io/zh_CN/latest/docs/sdk/sdk.html#web3j-api)，[Precompiled Serveice API](https://fisco-bcos-documentation.readthedocs.io/zh_CN/latest/docs/sdk/sdk.html#precompiled-service-api)、Solidity合约文件转Java合约文件、部署和调用合约的测试。
 
 ### Web3j API测试
 提供Web3jApiTest测试类测试Web3j API。示例测试如下：
@@ -161,8 +164,8 @@ public void deployAndCallHelloWorld() throws Exception {
 - 在[微信群](images/WeChatQR.jpeg)和[Gitter](https://gitter.im/fisco-bcos/Lobby)参与讨论。
 
 ## 相关链接
-- 了解FISCO BCOS项目，请参考[FISCO BCOS文档](https://fisco-bcos-documentation.readthedocs.io/zh_CN/release-2.0/docs/introduction.html)。
-- 了解Web3SDK项目，请参考[Web3SDK文档](https://fisco-bcos-documentation.readthedocs.io/zh_CN/release-2.0/docs/sdk/sdk.html)。
+- 了解FISCO BCOS项目，请参考[FISCO BCOS文档](https://fisco-bcos-documentation.readthedocs.io/zh_CN/latest/docs/introduction.html)。
+- 了解Web3SDK项目，请参考[Web3SDK文档](https://fisco-bcos-documentation.readthedocs.io/zh_CN/latest/docs/sdk/sdk.html)。
 - 了解spring boot，请参考[Spring Boot官网](https://spring.io/guides/gs/spring-boot/)。
 
 ## 社区生态
