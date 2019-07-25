@@ -8,23 +8,24 @@ English / [中文](doc/README_CN.md)
 [![CodeFactor](https://www.codefactor.io/repository/github/fisco-bcos/spring-boot-starter/badge)](https://www.codefactor.io/repository/github/fisco-bcos/spring-boot-starter)
 ---
 
-The sample spring boot project is based on [Web3SDK](https://fisco-bcos-documentation.readthedocs.io/zh_CN/latest/docs/sdk/sdk.html), which provides the basic framework and basic test cases for blockchain application and helps developers to quickly develop applications based on the FISCO BCOS blockchain. **The version only supports** [FISCO BCOS 2.0](https://fisco-bcos-documentation.readthedocs.io/zh_CN/latest/).
+The sample spring boot project is based on [Web3SDK](https://fisco-bcos-documentation.readthedocs.io/en/latest/docs/sdk/sdk.html), which provides the basic framework and basic test cases for blockchain application and helps developers to quickly develop applications based on the FISCO BCOS blockchain. **The version only supports** [FISCO BCOS 2.0](https://fisco-bcos-documentation.readthedocs.io/en/latest/).
 
 ## Quickstart
 
 ### Precodition
-Build FISCO BCOS blockchain, please check out [here](https://fisco-bcos-documentation.readthedocs.io/zh_CN/latest/docs/installation.html)。
 
-### Configuration
+Build FISCO BCOS blockchain, please check out [here](https://fisco-bcos-documentation.readthedocs.io/en/latest/docs/installation.html)。
 
 ### Download
+
 ```
 $ git clone https://github.com/FISCO-BCOS/spring-boot-starter.git
 ```
 #### Certificate Configuration
 Copy the `ca.crt`, `node.crt`, and `node.key` files in the node's directory `nodes/${ip}/sdk` to the project's `src/main/resources` directory.
 
-#### Settings
+### Settings
+
 The `application.yml` of the spring boot project is shown below, and the commented content is modified according to the blockchain node configuration.
   
 ```yml
@@ -51,26 +52,32 @@ accounts:
   p12-file: 0x98333491efac02f8ce109b0c499074d47e7779a6.p12 # PKCS12 format account file
   password: 123456 # PKCS12 format account password
 ```
-A detail description of the SDK configuration for the project, please checkout [ here](https://fisco-bcos-documentation.readthedocs.io/zh_CN/latest/docs/sdk/sdk.html#sdk)。
+
+A detail description of the SDK configuration for the project, please checkout [ here](https://fisco-bcos-documentation.readthedocs.io/en/latest/docs/sdk/sdk.html#sdk)。
 
 ### Run
+
 Compile and run test cases:
+
 ```
 $ cd spring-boot-starter
 $ ./gradlew build
 $ ./gradlew test
 ```
+
 When all test cases run successfully, it means that the blockchain is running normally,and the project is connected to the blockchain through the SDK. You can develop your blockchain application based on the project。
 
 **Note: If you run the demo project in IntelliJ IDEA or Eclipse, please use gradle wrapper mode and install the [Lombok plugin](https://projectlombok.org/setup/intellij). In addition, please enable `Annotation Processors` in `Settings` for IntelliJ IDEA.**
 
 ## Test Case Introduction
 
-The sample project provides test cases for developers to use. The test cases are mainly divided into tests for [Web3j API](https://fisco-bcos-documentation.readthedocs.io/zh_CN/latest/docs/sdk/sdk.html#web3j-api), [Precompiled Serveice API](https://fisco-bcos-documentation.readthedocs.io/zh_CN/latest/docs/sdk/sdk.html#precompiled-service-api), Solidity contract file to Java contract file, deployment and call contract.
+The sample project provides test cases for developers to use. The test cases are mainly divided into tests for [Web3j API](https://fisco-bcos-documentation.readthedocs.io/en/latest/docs/sdk/sdk.html#web3j-api), [Precompiled Serveice API](https://fisco-bcos-documentation.readthedocs.io/en/latest/docs/sdk/sdk.html#precompiled-service-api), Solidity contract file to Java contract file, deployment and call contract.
 
 ### Web3j API Test
+
 Provide `Web3jApiTest` class to test the Web3j API. The sample test is as follows:
-```
+
+```java
 @Test
 public void getBlockNumber() throws IOException {
     BigInteger blockNumber = web3j.getBlockNumber().send().getBlockNumber();
@@ -78,15 +85,19 @@ public void getBlockNumber() throws IOException {
     assertTrue(blockNumber.compareTo(new BigInteger("0"))>= 0);
 }
 ```
+
 **Tips:** The `Application` class initializes the Web3j object, which can be used directly in the way where the business code needs it. The usage is as follows:
-  ```
+
+```
 @Autowired
 private Web3j web3j
-  ```
+```
 
 ### Precompiled Service API Test
+
 Provide `PrecompiledServiceApiTest` class to test the Precompiled Service API。The sample test is as follows:
-```API
+
+```java
 @Test
 public void testSystemConfigService() throws Exception {
     SystemConfigSerivce systemConfigSerivce = new SystemConfigSerivce(web3j, credentials);
@@ -98,8 +109,10 @@ public void testSystemConfigService() throws Exception {
 ```
 
 ### Solidity contract file to Java contract file Test
+
 Provide `SolidityFunctionWrapperGeneratorTest` class to test contract compilation. The sample test is as follows:
-```API
+
+```java
 @Test
 public void compileSolFilesToJavaTest() throws IOException {
     File solFileList = new File("src/test/resources/contract");
@@ -136,11 +149,14 @@ public void compileSolFilesToJavaTest() throws IOException {
     System.out.println("generate successfully");
 }
 ```
+
 This test case converts all Solidity contract files (`HelloWorld` contract provided by default) in the `src/test/resources/contract` directory to the corresponding `abi` and `bin` files, and save them in the `src/test/resources/solidity` directory. Then convert the `abi` file and the corresponding `bin` file combination into a Java contract file, which is saved in the `src/test/java/org/fisco/bcos/temp` directory. The SDK will use the Java contract file for contract deployment and invocation.
 
 ### Deployment and Invocation Contract Test
+
 Provide `ContractTest` class to test deploy and call contracts. The sample test is as follows:
-```
+
+```java
 @Test
 public void deployAndCallHelloWorld() throws Exception {
     //deploy contract
@@ -156,25 +172,20 @@ public void deployAndCallHelloWorld() throws Exception {
     }
 }
 ```
-## Developing & Contributing
-- Star our Github.
-- Pull requests. See [CONTRIBUTING](CONTRIBUTING.md).
-- [Ask questions](https://github.com/FISCO-BCOS/spring-boot-starter/issues).
-- Discuss in [WeChat group](doc/images/WeChatQR.jpeg)  or [Gitter](https://gitter.im/fisco-bcos/Lobby).
+
+## Code contribution
+
+- Your contributions are most welcome and appreciated. Please read the [contribution instructions ](https://mp.weixin.qq.com/s/hEn2rxqnqp0dF6OKH6Ua-A) and [coding code style guide](CODING_STYLE.md).
+- If this project is useful to you, please star us on GitHub project page!
+
+## Join Our Community
+
+The FISCO BCOS community is one of the most active open-source blockchain communities in China. It provides long-term technical support for both institutional and individual developers and users of FISCO BCOS. Thousands of technical enthusiasts from numerous industry sectors have joined this community, studying and using FISCO BCOS platform. If you are also interested, you are most welcome to join us for more support and fun.
+
+![](https://media.githubusercontent.com/media/FISCO-BCOS/LargeFiles/master/images/QR_image_en.png)
 
 ## Related Links
-- For FISCO BCOS project, please check out [FISCO BCOS Documentation](https://fisco-bcos-documentation.readthedocs.io/zh_CN/latest/docs/introduction.html)。
-- For Web3SDK project, please check out [Web3SDK Documentation](https://fisco-bcos-documentation.readthedocs.io/zh_CN/lastest/docs/sdk/sdk.html)。
+
+- For FISCO BCOS project, please check out [FISCO BCOS Documentation](https://fisco-bcos-documentation.readthedocs.io/en/latest/docs/introduction.html)。
+- For Web3SDK project, please check out [Web3SDK Documentation](https://fisco-bcos-documentation.readthedocs.io/en/latest/docs/sdk/sdk.html)。
 - For Spring Boot applications, please check out [Spring Boot](https://spring.io/guides/gs/spring-boot/)。
-
-## Community
-
-By the end of 2018, Financial Blockchain Shenzhen Consortium (FISCO) has attracted and admitted more than 100 members from 6 sectors including banking, fund management, securities brokerage, insurance, regional equity exchanges, and financial information service companies. The first members include the following organizations: Beyondsoft, Huawei, Shenzhen Securities Communications, Digital China, Forms Syntron, Tencent, WeBank, Yuexiu FinTech.
-
-- Join our WeChat [![Scan](https://img.shields.io/badge/style-Scan_QR_Code-green.svg?logo=wechat&longCache=false&style=social&label=Group)](doc/images/WeChatQR.jpeg) 
-
-- Discuss in [![Gitter](https://img.shields.io/badge/style-on_gitter-green.svg?logo=gitter&longCache=false&style=social&label=Chat)](https://gitter.im/fisco-bcos/Lobby) 
-
-- Read news by [![](https://img.shields.io/twitter/url/http/shields.io.svg?style=social&label=Follow@FiscoBcos)](https://twitter.com/FiscoBcos)
-
-- Mail us at [![](https://img.shields.io/twitter/url/http/shields.io.svg?logo=Gmail&style=social&label=service@fisco.com.cn)](mailto:service@fisco.com.cn)
