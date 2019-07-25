@@ -15,16 +15,17 @@
 ### 前置条件
 搭建FISCO BCOS区块链，具体步骤[参考这里](https://fisco-bcos-documentation.readthedocs.io/zh_CN/latest/docs/installation.html)。
 
-### 配置
-
 ### 获取源码
+
 ```
 $ git clone https://github.com/FISCO-BCOS/spring-boot-starter.git
 ```
+
 #### 节点证书配置
 将节点所在目录`nodes/${ip}/sdk`下的`ca.crt`、`node.crt`和`node.key`文件拷贝到项目的`src/main/resources`目`录下供SDK使用。
 
-#### 配置文件设置
+### 配置文件设置
+
 spring boot项目的配置文件application.yml如下图所示，其中加了注释的内容根据区块链节点配置做相应修改。
   
 ```yml
@@ -54,12 +55,14 @@ accounts:
 项目中关于SDK配置的详细说明请[参考这里](https://fisco-bcos-documentation.readthedocs.io/zh_CN/latest/docs/sdk/sdk.html#sdk)。
 
 ### 运行
+
 编译并运行测试案例，在项目根目录下运行：
 ```
 $ cd spring-boot-starter
 $ ./gradlew build
 $ ./gradlew test
 ```
+
 当所有测试案例运行成功，则代表区块链运行正常，该项目通过SDK连接区块链正常。开发者可以基于该项目进行具体应用开发。
 
 **注：如果在IntelliJ IDEA或Eclipse中运行该demo工程，则使用gradle wrapper模式并安装[Lombok插件](https://projectlombok.org/setup/intellij)，此外IntelliJ IDEA需要在设置中开启`Annotation Processors`功能。**
@@ -69,8 +72,10 @@ $ ./gradlew test
 该示例项目提供的测试案例，供开发者参考使用。测试案例主要分为对[Web3j API](https://fisco-bcos-documentation.readthedocs.io/zh_CN/latest/docs/sdk/sdk.html#web3j-api)，[Precompiled Serveice API](https://fisco-bcos-documentation.readthedocs.io/zh_CN/latest/docs/sdk/sdk.html#precompiled-service-api)、Solidity合约文件转Java合约文件、部署和调用合约的测试。
 
 ### Web3j API测试
+
 提供Web3jApiTest测试类测试Web3j API。示例测试如下：
-```
+
+```java
 @Test
 public void getBlockNumber() throws IOException {
     BigInteger blockNumber = web3j.getBlockNumber().send().getBlockNumber();
@@ -78,15 +83,19 @@ public void getBlockNumber() throws IOException {
     assertTrue(blockNumber.compareTo(new BigInteger("0"))>= 0);
 }
 ```
+
 **温馨提示：** Application类初始化了web3j对象，在业务代码需要的地方可用注解的方式直接使用，使用方式如下：
-  ```
+
+  ```java
 @Autowired
 private Web3j web3j
   ```
 
 ### Precompiled Service API测试
+
 提供PrecompiledServiceApiTest测试类测试Precompiled Service API。示例测试如下：
-```API
+
+```java
 @Test
 public void testSystemConfigService() throws Exception {
     SystemConfigSerivce systemConfigSerivce = new SystemConfigSerivce(web3j, credentials);
@@ -98,8 +107,10 @@ public void testSystemConfigService() throws Exception {
 ```
 
 ### Solidity合约文件转Java合约文件测试
+
 提供SolidityFunctionWrapperGeneratorTest测试类测试Solidity合约文件转Java合约文件。示例测试如下：
-```API
+
+```java
 @Test
 public void compileSolFilesToJavaTest() throws IOException {
     File solFileList = new File("src/test/resources/contract");
@@ -136,11 +147,14 @@ public void compileSolFilesToJavaTest() throws IOException {
     System.out.println("generate successfully");
 }
 ```
+
 该测试案例将src/test/resources/contract目录下的所有Solidity合约文件(默认提供HelloWorld合约)均转为相应的abi和bin文件，保存在src/test/resources/solidity目录下。然后将abi文件和对应的bin文件组合转换为Java合约文件，保存在src/test/java/org/fisco/bcos/temp目录下。SDK将利用Java合约文件进行合约部署与调用。
 
 ### 部署和调用合约测试
+
 提供ContractTest测试类测试部署和调用合约。示例测试如下：
-```
+
+```java
 @Test
 public void deployAndCallHelloWorld() throws Exception {
     //deploy contract
@@ -156,26 +170,19 @@ public void deployAndCallHelloWorld() throws Exception {
     }
 }
 ```
+
 ## 贡献代码
-欢迎参与FISCO BCOS的社区建设：
-- 点亮我们的小星星(点击项目左上方Star按钮)。
-- 提交代码(Pull requests)，参考我们的[代码贡献流程](CONTRIBUTING_CN.md)。
-- [提问和提交BUG](https://github.com/FISCO-BCOS/spring-boot-starter/issues)。
-- 在[微信群](images/WeChatQR.jpeg)和[Gitter](https://gitter.im/fisco-bcos/Lobby)参与讨论。
+)和[代码规范](../CODING_STYLE.md)。
+- 如项目对您有帮助，欢迎star支持！
+
+## 加入我们的社区
+
+**FISCO BCOS开源社区**是国内活跃的开源社区，社区长期为机构和个人开发者提供各类支持与帮助。已有来自各行业的数千名技术爱好者在研究和使用FISCO BCOS。如您对FISCO BCOS开源技术及应用感兴趣，欢迎加入社区获得更多支持与帮助。
+
+![](https://media.githubusercontent.com/media/FISCO-BCOS/LargeFiles/master/images/QR_image.png)
 
 ## 相关链接
-- 了解FISCO BCOS项目，请参考[FISCO BCOS文档](https://fisco-bcos-documentation.readthedocs.io/zh_CN/latest/docs/introduction.html)。
-- 了解Web3SDK项目，请参考[Web3SDK文档](https://fisco-bcos-documentation.readthedocs.io/zh_CN/latest/docs/sdk/sdk.html)。
+
+- 了解FISCO BCOS项目，请参考[FISCO BCOS文档](https://fisco-bcos-documentation.readthedocs.io/zh_CN/release-2.0/docs/introduction.html)。
+- 了解Web3SDK项目，请参考[Web3SDK文档](https://fisco-bcos-documentation.readthedocs.io/zh_CN/release-2.0/docs/sdk/sdk.html)。
 - 了解spring boot，请参考[Spring Boot官网](https://spring.io/guides/gs/spring-boot/)。
-
-## 社区生态
-
-**金链盟**开源工作组，获得金链盟成员机构的广泛认可，并由专注于区块链底层技术研发的成员机构及开发者牵头开展工作。其中首批成员包括以下单位(排名不分先后): 博彦科技、华为、深证通、神州数码、四方精创、腾讯、微众银行、越秀金科。
-
-- 微信群：[![Scan](https://img.shields.io/badge/style-Scan_QR_Code-green.svg?logo=wechat&longCache=false&style=social&label=Group)](images/WeChatQR.jpeg) 
-
-- Gitter：[![Gitter](https://img.shields.io/badge/style-on_gitter-green.svg?logo=gitter&longCache=false&style=social&label=Chat)](https://gitter.im/fisco-bcos/Lobby) 
-
-- Twitter：[![](https://img.shields.io/twitter/url/http/shields.io.svg?style=social&label=Follow@FiscoBcos)](https://twitter.com/FiscoBcos)
-
-- e-mail：[![](https://img.shields.io/twitter/url/http/shields.io.svg?logo=Gmail&style=social&label=service@fisco.com.cn)](mailto:service@fisco.com.cn)
