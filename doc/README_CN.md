@@ -172,7 +172,7 @@ public void deployAndCallHelloWorld() throws Exception {
 ```
 
 ## 贡献代码
-- 我们欢迎并非常感谢您的贡献，请参阅[代码贡献流程](https://mp.weixin.qq.com/s/hEn2rxqnqp0dF6OKH6Ua-A)[代码规范](../CODING_STYLE.md)。
+- 我们欢迎并非常感谢您的贡献，请参阅[代码贡献流程](https://mp.weixin.qq.com/s/hEn2rxqnqp0dF6OKH6Ua-A)和[代码规范](./CONTRIBUTING_CN.md)。
 - 如项目对您有帮助，欢迎star支持！
 
 ## 加入我们的社区
