@@ -173,7 +173,7 @@ public void deployAndCallHelloWorld() throws Exception {
 }
 ```
 
-## Code contribution
+## Code Contribution
 
 - Your contributions are most welcome and appreciated. Please read the [contribution instructions ](https://mp.weixin.qq.com/s/hEn2rxqnqp0dF6OKH6Ua-A) and [coding code style guide](CODING_STYLE.md).
 - If this project is useful to you, please star us on GitHub project page!
