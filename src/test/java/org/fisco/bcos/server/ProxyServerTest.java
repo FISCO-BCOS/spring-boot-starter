@@ -17,7 +17,7 @@ public class ProxyServerTest extends BaseTest {
         Server server = new Server();
         ChannelConnections channelConnections = new ChannelConnections();
         List<String> ilist = new ArrayList<>();
-        ilist.add("10.107.105.138:30901");
+        ilist.add("127.0.0.1:30901");
         channelConnections.setConnectionsStr(ilist);
         server.setRemoteConnections(channelConnections);
 
