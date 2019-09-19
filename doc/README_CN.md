@@ -22,7 +22,7 @@ $ git clone https://github.com/FISCO-BCOS/spring-boot-starter.git
 ```
 
 #### 节点证书配置
-将节点所在目录`nodes/${ip}/sdk`下的`ca.crt`、`node.crt`和`node.key`文件拷贝到项目的`src/main/resources`目`录下供SDK使用。
+将节点所在目录`nodes/${ip}/sdk`下的`ca.crt`、`sdk.crt`和`sdk.key`文件拷贝到项目的`src/main/resources`目`录下供SDK使用(FISCO BCOS 2.1以前，证书为`ca.crt`、`node.crt`和`node.key`)。
 
 ### 配置文件设置
 
