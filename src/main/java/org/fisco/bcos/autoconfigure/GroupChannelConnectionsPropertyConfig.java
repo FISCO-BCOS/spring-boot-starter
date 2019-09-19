@@ -8,6 +8,7 @@ import org.fisco.bcos.channel.handler.GroupChannelConnectionsConfig;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.io.Resource;
 
 @Data
 @Configuration
@@ -15,11 +16,17 @@ import org.springframework.context.annotation.Configuration;
 public class GroupChannelConnectionsPropertyConfig {
 
     List<ChannelConnections> allChannelConnections = new ArrayList<>();
+    private Resource caCert;
+    private Resource sslCert;
+    private Resource sslKey;
 
     @Bean
     public GroupChannelConnectionsConfig getGroupChannelConnections() {
         GroupChannelConnectionsConfig groupChannelConnectionsConfig =
                 new GroupChannelConnectionsConfig();
+        groupChannelConnectionsConfig.setCaCert(caCert);
+        groupChannelConnectionsConfig.setSslCert(sslCert);
+        groupChannelConnectionsConfig.setSslKey(sslKey);
         groupChannelConnectionsConfig.setAllChannelConnections(allChannelConnections);
         return groupChannelConnectionsConfig;
     }
