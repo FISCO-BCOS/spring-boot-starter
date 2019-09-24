@@ -60,3 +60,4 @@ configurations {
 		extendsFrom annotationProcessor
 	}
 }
+
