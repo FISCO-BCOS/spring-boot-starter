@@ -70,6 +70,19 @@ public class GroupChannelConnectionsPropertyConfig {
     public void setSslKey(Resource sslKey) {
         this.sslKey = sslKey;
     }
-    
+
+    /**
+     * @return the allChannelConnections
+     */
+    public List<ChannelConnections> getAllChannelConnections() {
+        return allChannelConnections;
+    }
+
+    /**
+     * @param allChannelConnections the allChannelConnections to set
+     */
+    public void setAllChannelConnections(List<ChannelConnections> allChannelConnections) {
+        this.allChannelConnections = allChannelConnections;
+    }
     
 }
