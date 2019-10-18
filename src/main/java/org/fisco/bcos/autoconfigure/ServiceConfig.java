@@ -1,22 +1,21 @@
 package org.fisco.bcos.autoconfigure;
 
-import lombok.Data;
-import lombok.extern.slf4j.Slf4j;
 import org.fisco.bcos.channel.client.Service;
 import org.fisco.bcos.channel.handler.GroupChannelConnectionsConfig;
 import org.fisco.bcos.constants.ConnectConstants;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-@Data
 @Configuration
 @ConfigurationProperties(prefix = "channel-service")
-@Slf4j
 public class ServiceConfig {
 
     private String agencyName;
     private int groupId;
+    private static final Logger log = LoggerFactory.getLogger(ServiceConfig.class);
 
     @Bean
     public Service getService(GroupChannelConnectionsConfig groupChannelConnectionsConfig) {
@@ -29,4 +28,34 @@ public class ServiceConfig {
         channelService.setAllChannelConnections(groupChannelConnectionsConfig);
         return channelService;
     }
+
+    /**
+     * @return the agencyName
+     */
+    public String getAgencyName() {
+        return agencyName;
+    }
+
+    /**
+     * @param agencyName the agencyName to set
+     */
+    public void setAgencyName(String agencyName) {
+        this.agencyName = agencyName;
+    }
+
+    /**
+     * @return the groupId
+     */
+    public int getGroupId() {
+        return groupId;
+    }
+
+    /**
+     * @param groupId the groupId to set
+     */
+    public void setGroupId(int groupId) {
+        this.groupId = groupId;
+    }
+    
+    
 }

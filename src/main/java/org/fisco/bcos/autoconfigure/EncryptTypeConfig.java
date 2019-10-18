@@ -1,12 +1,10 @@
 package org.fisco.bcos.autoconfigure;
 
-import lombok.Data;
 import org.fisco.bcos.web3j.crypto.EncryptType;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-@Data
 @Configuration
 @ConfigurationProperties(prefix = "encrypt-type")
 public class EncryptTypeConfig {

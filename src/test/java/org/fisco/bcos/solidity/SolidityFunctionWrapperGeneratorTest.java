@@ -14,15 +14,15 @@ import org.fisco.bcos.web3j.codegen.SolidityFunctionWrapperGenerator;
 import org.fisco.bcos.web3j.solidity.compiler.CompilationResult;
 import org.fisco.bcos.web3j.solidity.compiler.SolidityCompiler;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.core.io.ClassPathResource;
 
-import lombok.extern.slf4j.Slf4j;
-
-@Slf4j
 public class SolidityFunctionWrapperGeneratorTest  {
 
     protected String tempDirPath =  new File("src/test/java/").getAbsolutePath();
     protected String packageName =  "org.fisco.bcos.solidity";
+    private static final Logger log = LoggerFactory.getLogger(SolidityFunctionWrapperGeneratorTest.class);
 
 
     @Test

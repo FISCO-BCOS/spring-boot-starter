@@ -65,7 +65,7 @@ $ ./gradlew test
 
 当所有测试案例运行成功，则代表区块链运行正常，该项目通过SDK连接区块链正常。开发者可以基于该项目进行具体应用开发。
 
-**注：如果在IntelliJ IDEA或Eclipse中运行该demo工程，则使用gradle wrapper模式并安装[Lombok插件](https://projectlombok.org/setup/intellij)，此外IntelliJ IDEA需要在设置中开启`Annotation Processors`功能。**
+**注：如果在IntelliJ IDEA或Eclipse中运行该demo工程，则使用gradle wrapper模式，此外IntelliJ IDEA需要在设置中开启`Annotation Processors`功能。**
 
 ## 测试案例介绍
 
