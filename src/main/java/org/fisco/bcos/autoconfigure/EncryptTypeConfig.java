@@ -15,4 +15,11 @@ public class EncryptTypeConfig {
     public EncryptType getEncryptType() {
         return new EncryptType(encryptType);
     }
+
+    /**
+     * @param encryptType the encryptType to set
+     */
+    public void setEncryptType(int encryptType) {
+        this.encryptType = encryptType;
+    }
 }
