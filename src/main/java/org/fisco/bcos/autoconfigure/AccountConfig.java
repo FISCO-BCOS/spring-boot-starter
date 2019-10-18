@@ -22,29 +22,28 @@ import java.security.NoSuchProviderException;
 import java.security.UnrecoverableKeyException;
 import java.security.cert.CertificateException;
 import java.security.spec.InvalidKeySpecException;
-import lombok.Data;
-import lombok.extern.slf4j.Slf4j;
+
 import org.fisco.bcos.channel.client.P12Manager;
 import org.fisco.bcos.channel.client.PEMManager;
 import org.fisco.bcos.web3j.crypto.Credentials;
 import org.fisco.bcos.web3j.crypto.ECKeyPair;
 import org.fisco.bcos.web3j.crypto.EncryptType;
 import org.fisco.bcos.web3j.crypto.gm.GenCredential;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-@Data
 @Configuration
 @ConfigurationProperties(prefix = "accounts")
-@Slf4j
 public class AccountConfig {
 
     private String pemFile;
     private String p12File;
-    private String password;
-
+    private String password;    
+    private static final Logger log = LoggerFactory.getLogger(AccountConfig.class);
     @Autowired private EncryptType encryptType;
 
     @Bean
@@ -84,4 +83,48 @@ public class AccountConfig {
         System.out.println(credentials.getAddress());
         return credentials;
     }
+
+    /**
+     * @return the pemFile
+     */
+    public String getPemFile() {
+        return pemFile;
+    }
+
+    /**
+     * @param pemFile the pemFile to set
+     */
+    public void setPemFile(String pemFile) {
+        this.pemFile = pemFile;
+    }
+
+    /**
+     * @return the p12File
+     */
+    public String getP12File() {
+        return p12File;
+    }
+
+    /**
+     * @param p12File the p12File to set
+     */
+    public void setP12File(String p12File) {
+        this.p12File = p12File;
+    }
+
+    /**
+     * @return the password
+     */
+    public String getPassword() {
+        return password;
+    }
+
+    /**
+     * @param password the password to set
+     */
+    public void setPassword(String password) {
+        this.password = password;
+    }
+    
+    
 }

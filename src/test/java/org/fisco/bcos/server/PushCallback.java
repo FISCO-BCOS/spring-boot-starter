@@ -2,13 +2,17 @@ package org.fisco.bcos.server;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import lombok.extern.slf4j.Slf4j;
+
 import org.fisco.bcos.channel.client.ChannelPushCallback;
 import org.fisco.bcos.channel.dto.ChannelPush;
 import org.fisco.bcos.channel.dto.ChannelResponse;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-@Slf4j
+
 class PushCallback extends ChannelPushCallback {
+
+    private static final Logger log = LoggerFactory.getLogger(PushCallback.class);
 
     @Override
     public void onPush(ChannelPush push) {

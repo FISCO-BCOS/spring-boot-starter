@@ -67,7 +67,7 @@ $ ./gradlew test
 
 When all test cases run successfully, it means that the blockchain is running normally,and the project is connected to the blockchain through the SDK. You can develop your blockchain application based on the project。
 
-**Note: If you run the demo project in IntelliJ IDEA or Eclipse, please use gradle wrapper mode and install the [Lombok plugin](https://projectlombok.org/setup/intellij). In addition, please enable `Annotation Processors` in `Settings` for IntelliJ IDEA.**
+**Note: If you run the demo project in IntelliJ IDEA or Eclipse, please use gradle wrapper mode. In addition, please enable `Annotation Processors` in `Settings` for IntelliJ IDEA.**
 
 ## Test Case Introduction
 
