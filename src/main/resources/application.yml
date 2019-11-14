@@ -2,9 +2,9 @@ encrypt-type: # 0:standard, 1:guomi
   encrypt-type: 0
 
 group-channel-connections-config:
-  caCert: ca.crt
-  sslCert: sdk.crt
-  sslKey: sdk.key
+  caCert: classpath:ca.crt
+  sslCert: classpath:sdk.crt
+  sslKey: classpath:sdk.key
   all-channel-connections:
     - group-id: 1 #group ID
       connections-str:
