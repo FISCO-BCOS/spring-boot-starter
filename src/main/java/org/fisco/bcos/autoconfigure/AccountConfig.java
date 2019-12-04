@@ -44,7 +44,7 @@ public class AccountConfig {
     private String p12File;
     private String password;    
     private static final Logger log = LoggerFactory.getLogger(AccountConfig.class);
-    @Autowired private EncryptType encryptType;
+    
 
     @Bean
     public Credentials getCredentials()
@@ -52,7 +52,6 @@ public class AccountConfig {
                     InvalidKeySpecException, NoSuchProviderException, CertificateException,
                     IOException {
         return loadPemAccount();
-        // return loadP12Account();
     }
 
     // load pem account file
@@ -64,21 +63,6 @@ public class AccountConfig {
         pem.setPemFile("classpath:" + pemFile);
         pem.load();
         ECKeyPair keyPair = pem.getECKeyPair();
-        Credentials credentials = GenCredential.create(keyPair.getPrivateKey().toString(16));
-        System.out.println(credentials.getAddress());
-        return credentials;
-    }
-
-    // load p12 account file
-    private Credentials loadP12Account()
-            throws KeyStoreException, NoSuchAlgorithmException, CertificateException, IOException,
-                    NoSuchProviderException, InvalidKeySpecException, UnrecoverableKeyException {
-        log.info("p12 accounts : {}", p12File);
-        P12Manager p12Manager = new P12Manager();
-        p12Manager.setP12File("classpath:" + p12File);
-        p12Manager.setPassword(password);
-        p12Manager.load();
-        ECKeyPair keyPair = p12Manager.getECKeyPair();
         Credentials credentials = GenCredential.create(keyPair.getPrivateKey().toString(16));
         System.out.println(credentials.getAddress());
         return credentials;
