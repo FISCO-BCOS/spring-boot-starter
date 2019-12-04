@@ -58,3 +58,7 @@ configurations {
 		extendsFrom annotationProcessor
 	}
 }
+
+test {
+    systemProperty "jdk.tls.namedGroups", "secp256k1"
+}
