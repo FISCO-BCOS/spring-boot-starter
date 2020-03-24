@@ -47,7 +47,7 @@ dependencies {
 	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
-  compile 'org.fisco-bcos:web3sdk:2.2.0'
+  compile 'org.fisco-bcos:web3sdk:release-2.3.0-0324-SNAPSHOT'
 }
 
 configurations {
