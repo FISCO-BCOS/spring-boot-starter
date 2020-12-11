@@ -22,38 +22,76 @@ Build FISCO BCOS blockchain, please check out [here](https://fisco-bcos-document
 $ git clone https://github.com/FISCO-BCOS/spring-boot-starter.git
 ```
 #### Certificate Configuration
-Copy the `ca.crt`, `sdk.crt`, and `sdk.key` files in the node's directory `nodes/${ip}/sdk` to the project's `src/main/resources` directory.(Before FISCO BCOS 2.1, the certificate files are `ca.crt`, `node.crt` and `node.key`)
+Copy the `ca.crt`, `sdk.crt`, and `sdk.key` files in the node's directory `nodes/${ip}/sdk` to the project's `src/main/resources/conf` directory.(Before FISCO BCOS 2.1, the certificate files are `ca.crt`, `node.crt` and `node.key`)
 
 ### Settings
 
-The `application.yml` of the spring boot project is shown below, and the commented content is modified according to the blockchain node configuration.
+The `applicationContext.xml` of the spring boot project is shown below, and the commented content is modified according to the blockchain node configuration.
   
-```yml
-encrypt-type: # 0:standard, 1:guomi
- encrypt-type: 0 
- 
-group-channel-connections-config:
-  all-channel-connections:
-  - group-id: 1  # group ID
-    connections-str:
-                    - 127.0.0.1:20200  # node listen_ip:channel_listen_port
-                    - 127.0.0.1:20201
-  - group-id: 2  
-    connections-str:
-                    - 127.0.0.1:20202  # node listen_ip:channel_listen_port
-                    - 127.0.0.1:20203
- 
-channel-service:
-  group-id: 1 # The specified group to which the SDK connects
-  agency-name: fisco # agency name
+```xml
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
+	<bean id="defaultConfigProperty" class="org.fisco.bcos.sdk.config.model.ConfigProperty">
+		<property name="cryptoMaterial">
+			<map>
+			<entry key="certPath" value="conf" />
+			<!-- SSL certificate configuration -->
+			<!-- entry key="caCert" value="conf/ca.crt" /-->
+			<!-- entry key="sslCert" value="conf/sdk.crt" /-->
+			<!-- entry key="sslKey" value="conf/sdk.key" /-->
+			<!-- GM SSL certificate configuration -->
+			<!-- entry key="caCert" value="conf/gm/gmca.crt" /-->
+			<!-- entry key="sslCert" value="conf/gm/gmsdk.crt" /-->
+			<!-- entry key="sslKey" value="conf/gm/gmsdk.key" /-->
+			<!--entry key="enSslCert" value="conf/gm/gmensdk.crt" /-->
+			<!--entry key="enSslKey" value="conf/gm/gmensdk.key" /-->
+			</map>
+		</property>
+		<property name="network">
+			<map>
+				<entry key="peers">
+					<list>
+						<value>127.0.0.1:20200</value>
+						<value>127.0.0.1:20201</value>
+					</list>
+				</entry>
+			</map>
+		</property>
+		<property name="account">
+			<map>
+				<entry key="keyStoreDir" value="account" />
+				<entry key="accountAddress" value="" />
+				<entry key="accountFileFormat" value="pem" />
+				<entry key="password" value="" />
+				<entry key="accountFilePath" value="" />
+			</map>
+		</property>
+		<property name="threadPool">
+			<map>
+			<entry key="channelProcessorThreadSize" value="16" />
+			<entry key="receiptProcessorThreadSize" value="16" />
+			<entry key="maxBlockingQueueSize" value="102400" />
+			</map>
+		</property>
+	</bean>
 
-accounts:
-  pem-file: 0xcdcce60801c0a2e6bb534322c32ae528b9dec8d2.pem # PEM format account file
-  p12-file: 0x98333491efac02f8ce109b0c499074d47e7779a6.p12 # PKCS12 format account file
-  password: 123456 # PKCS12 format account password
+	<bean id="defaultConfigOption" class="org.fisco.bcos.sdk.config.ConfigOption">
+		<constructor-arg name="configProperty">
+				<ref bean="defaultConfigProperty"/>
+		</constructor-arg>
+	</bean>
+
+	<bean id="bcosSDK" class="org.fisco.bcos.sdk.BcosSDK">
+		<constructor-arg name="configOption">
+			<ref bean="defaultConfigOption"/>
+		</constructor-arg>
+	</bean>
+</beans>
+
 ```
-
-A detail description of the SDK configuration for the project, please checkout [ here](https://fisco-bcos-documentation.readthedocs.io/en/latest/docs/sdk/sdk.html#sdk)。
 
 ### Run
 
@@ -71,26 +109,35 @@ When all test cases run successfully, it means that the blockchain is running no
 
 ## Test Case Introduction
 
-The sample project provides test cases for developers to use. The test cases are mainly divided into tests for [Web3j API](https://fisco-bcos-documentation.readthedocs.io/en/latest/docs/sdk/sdk.html#web3j-api), [Precompiled Serveice API](https://fisco-bcos-documentation.readthedocs.io/en/latest/docs/sdk/sdk.html#precompiled-service-api), Solidity contract file to Java contract file, deployment and call contract.
-
-### Web3j API Test
-
-Provide `Web3jApiTest` class to test the Web3j API. The sample test is as follows:
+### init BcosSDK
 
 ```java
-@Test
-public void getBlockNumber() throws IOException {
-    BigInteger blockNumber = web3j.getBlockNumber().send().getBlockNumber();
-    System.out.println(blockNumber);
-    assertTrue(blockNumber.compareTo(new BigInteger("0"))>= 0);
+public abstract class BaseTest {
+    protected BcosSDK bcosSDK;
+    protected Client client;
+
+    public void init() {
+        @SuppressWarnings("resource")
+        ApplicationContext context =
+                new ClassPathXmlApplicationContext("classpath:applicationContext.xml");
+
+        bcosSDK = context.getBean(BcosSDK.class);
+        client = bcosSDK.getClient(1);
+    }
 }
 ```
 
-**Tips:** The `Application` class initializes the Web3j object, which can be used directly in the way where the business code needs it. The usage is as follows:
+### Java SDK API Test
 
-```
-@Autowired
-private Web3j web3j
+Provide `JavaSDKApiTest` class to test the Java SDK API. The sample test is as follows:
+
+```java
+  @Test
+  public void getBlockNumber() throws IOException {
+        init();
+        BigInteger blockNumber = client.getBlockNumber().getBlockNumber();
+        assertTrue(blockNumber.compareTo(new BigInteger("0")) >= 0);
+  }
 ```
 
 ### Precompiled Service API Test
@@ -98,79 +145,38 @@ private Web3j web3j
 Provide `PrecompiledServiceApiTest` class to test the Precompiled Service API。The sample test is as follows:
 
 ```java
-@Test
-public void testSystemConfigService() throws Exception {
-    SystemConfigSerivce systemConfigSerivce = new SystemConfigSerivce(web3j, credentials);
-    systemConfigSerivce.setValueByKey("tx_count_limit", "2000");
-    String value = web3j.getSystemConfigByKey("tx_count_limit").send().getSystemConfigByKey();
-    System.out.println(value);
-    assertTrue("2000".equals(value));
-}
+  @Test
+  public void testSystemConfigService() throws Exception {
+        init();
+        SystemConfigService systemConfigService =
+                new SystemConfigService(client, client.getCryptoSuite().createKeyPair());
+        systemConfigService.setValueByKey("tx_count_limit", "2000");
+        String value = client.getSystemConfigByKey("tx_count_limit").getSystemConfig();
+        System.out.println(value);
+        assertTrue("2000".equals(value));
+  }
 ```
-
-### Solidity contract file to Java contract file Test
-
-Provide `SolidityFunctionWrapperGeneratorTest` class to test contract compilation. The sample test is as follows:
-
-```java
-@Test
-public void compileSolFilesToJavaTest() throws IOException {
-    File solFileList = new File("src/test/resources/contract");
-    File[] solFiles = solFileList.listFiles();
-
-    for (File solFile : solFiles) {
-
-        SolidityCompiler.Result res = SolidityCompiler.compile(solFile, true, ABI, BIN, INTERFACE, METADATA);
-        System.out.println("Out: '" + res.output + "'");
-        System.out.println("Err: '" + res.errors + "'");
-        CompilationResult result = CompilationResult.parse(res.output);
-        System.out.println("contractname  " + solFile.getName());
-        Path source = Paths.get(solFile.getPath());
-        String contractname = solFile.getName().split("\\.")[0];
-        CompilationResult.ContractMetadata a = result.getContract(solFile.getName().split("\\.")[0]);
-        System.out.println("abi   " + a.abi);
-        System.out.println("bin   " + a.bin);
-        FileUtils.writeStringToFile(new File("src/test/resources/solidity/" + contractname + ".abi"), a.abi);
-        FileUtils.writeStringToFile(new File("src/test/resources/solidity/" + contractname + ".bin"), a.bin);
-        String binFile;
-        String abiFile;
-        String tempDirPath = new File("src/test/java/").getAbsolutePath();
-        String packageName = "org.fisco.bcos.temp";
-        String filename = contractname;
-        abiFile = "src/test/resources/solidity/" + filename + ".abi";
-        binFile = "src/test/resources/solidity/" + filename + ".bin";
-        SolidityFunctionWrapperGenerator.main(Arrays.asList(
-                "-a", abiFile,
-                "-b", binFile,
-                "-p", packageName,
-                "-o", tempDirPath
-        ).toArray(new String[0]));
-    }
-    System.out.println("generate successfully");
-}
-```
-
-This test case converts all Solidity contract files (`HelloWorld` contract provided by default) in the `src/test/resources/contract` directory to the corresponding `abi` and `bin` files, and save them in the `src/test/resources/solidity` directory. Then convert the `abi` file and the corresponding `bin` file combination into a Java contract file, which is saved in the `src/test/java/org/fisco/bcos/temp` directory. The SDK will use the Java contract file for contract deployment and invocation.
 
 ### Deployment and Invocation Contract Test
 
 Provide `ContractTest` class to test deploy and call contracts. The sample test is as follows:
 
 ```java
-@Test
-public void deployAndCallHelloWorld() throws Exception {
-    //deploy contract
-    HelloWorld helloWorld = HelloWorld.deploy(web3j, credentials, new StaticGasProvider(gasPrice, gasLimit)).send();
-    if (helloWorld != null) {
-        System.out.println("HelloWorld address is: " + helloWorld.getContractAddress());
-        //call set function
-        helloWorld.set("Hello, World!").send();
-        //call get function
-        String result = helloWorld.get().send();
-        System.out.println(result);
-        assertTrue( "Hello, World!".equals(result));
-    }
-}
+  @Test
+  public void deployAndCallHelloWorld() throws Exception {
+        init();
+        // deploy contract
+        HelloWorld helloWorld = HelloWorld.deploy(client, client.getCryptoSuite().createKeyPair());
+        if (helloWorld != null) {
+            System.out.println("HelloWorld address is: " + helloWorld.getContractAddress());
+            // call set function
+            helloWorld.set("Hello, World!");
+            // call get function
+            String result = helloWorld.get();
+            System.out.println(result);
+            assertTrue("Hello, World!".equals(result));
+        }
+  }
 ```
 
 ## Code Contribution
@@ -187,5 +193,5 @@ The FISCO BCOS community is one of the most active open-source blockchain commun
 ## Related Links
 
 - For FISCO BCOS project, please check out [FISCO BCOS Documentation](https://fisco-bcos-documentation.readthedocs.io/en/latest/docs/introduction.html)。
-- For Web3SDK project, please check out [Web3SDK Documentation](https://fisco-bcos-documentation.readthedocs.io/en/latest/docs/sdk/sdk.html)。
+- For Java SDK project, please check out [Java SDK Documentation](https://fisco-bcos-documentation.readthedocs.io/zh_CN/latest/docs/sdk/java_sdk/index.html)。
 - For Spring Boot applications, please check out [Spring Boot](https://spring.io/guides/gs/spring-boot/)。

@@ -22,37 +22,75 @@ $ git clone https://github.com/FISCO-BCOS/spring-boot-starter.git
 ```
 
 #### 节点证书配置
-将节点所在目录`nodes/${ip}/sdk`下的`ca.crt`、`sdk.crt`和`sdk.key`文件拷贝到项目的`src/main/resources`目`录下供SDK使用(FISCO BCOS 2.1以前，证书为`ca.crt`、`node.crt`和`node.key`)。
+将节点所在目录`nodes/${ip}/sdk`下的`ca.crt`、`sdk.crt`和`sdk.key`文件拷贝到项目的`src/main/resources/conf`目录下供SDK使用(FISCO BCOS 2.1以前，证书为`ca.crt`、`node.crt`和`node.key`)。
 
 ### 配置文件设置
 
 spring boot项目的配置文件application.yml如下图所示，其中加了注释的内容根据区块链节点配置做相应修改。
   
-```yml
-encrypt-type: # 0：普通， 1：国密
- encrypt-type: 0 
- 
-group-channel-connections-config:
-  all-channel-connections:
-  - group-id: 1  # 群组ID
-    connections-str:
-                    - 127.0.0.1:20200  # 节点，listen_ip:channel_listen_port
-                    - 127.0.0.1:20201
-  - group-id: 2  
-    connections-str:
-                    - 127.0.0.1:20202  # 节点，listen_ip:channel_listen_port
-                    - 127.0.0.1:20203
- 
-channel-service:
-  group-id: 1 # sdk实际连接的群组
-  agency-name: fisco # 机构名称
+```xml
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
+	<bean id="defaultConfigProperty" class="org.fisco.bcos.sdk.config.model.ConfigProperty">
+		<property name="cryptoMaterial">
+			<map>
+			<entry key="certPath" value="conf" />
+			<!-- SSL certificate configuration -->
+			<!-- entry key="caCert" value="conf/ca.crt" /-->
+			<!-- entry key="sslCert" value="conf/sdk.crt" /-->
+			<!-- entry key="sslKey" value="conf/sdk.key" /-->
+			<!-- GM SSL certificate configuration -->
+			<!-- entry key="caCert" value="conf/gm/gmca.crt" /-->
+			<!-- entry key="sslCert" value="conf/gm/gmsdk.crt" /-->
+			<!-- entry key="sslKey" value="conf/gm/gmsdk.key" /-->
+			<!--entry key="enSslCert" value="conf/gm/gmensdk.crt" /-->
+			<!--entry key="enSslKey" value="conf/gm/gmensdk.key" /-->
+			</map>
+		</property>
+		<property name="network">
+			<map>
+				<entry key="peers">
+					<list>
+						<value>127.0.0.1:20200</value>
+						<value>127.0.0.1:20201</value>
+					</list>
+				</entry>
+			</map>
+		</property>
+		<property name="account">
+			<map>
+				<entry key="keyStoreDir" value="account" />
+				<entry key="accountAddress" value="" />
+				<entry key="accountFileFormat" value="pem" />
+				<entry key="password" value="" />
+				<entry key="accountFilePath" value="" />
+			</map>
+		</property>
+		<property name="threadPool">
+			<map>
+			<entry key="channelProcessorThreadSize" value="16" />
+			<entry key="receiptProcessorThreadSize" value="16" />
+			<entry key="maxBlockingQueueSize" value="102400" />
+			</map>
+		</property>
+	</bean>
 
-accounts:
-  pem-file: 0xcdcce60801c0a2e6bb534322c32ae528b9dec8d2.pem # PEM 格式账户文件
-  p12-file: 0x98333491efac02f8ce109b0c499074d47e7779a6.p12 # PKCS12 格式账户文件
-  password: 123456 # PKCS12 格式账户密码
+	<bean id="defaultConfigOption" class="org.fisco.bcos.sdk.config.ConfigOption">
+		<constructor-arg name="configProperty">
+				<ref bean="defaultConfigProperty"/>
+		</constructor-arg>
+	</bean>
+
+	<bean id="bcosSDK" class="org.fisco.bcos.sdk.BcosSDK">
+		<constructor-arg name="configOption">
+			<ref bean="defaultConfigOption"/>
+		</constructor-arg>
+	</bean>
+</beans>
 ```
-项目中关于SDK配置的详细说明请[参考这里](https://fisco-bcos-documentation.readthedocs.io/zh_CN/latest/docs/sdk/sdk.html#sdk)。
 
 ### 运行
 
@@ -69,106 +107,74 @@ $ ./gradlew test
 
 ## 测试案例介绍
 
-该示例项目提供的测试案例，供开发者参考使用。测试案例主要分为对[Web3j API](https://fisco-bcos-documentation.readthedocs.io/zh_CN/latest/docs/sdk/sdk.html#web3j-api)，[Precompiled Serveice API](https://fisco-bcos-documentation.readthedocs.io/zh_CN/latest/docs/sdk/sdk.html#precompiled-service-api)、Solidity合约文件转Java合约文件、部署和调用合约的测试。
-
-### Web3j API测试
-
-提供Web3jApiTest测试类测试Web3j API。示例测试如下：
+### 初始化BcosSDK
 
 ```java
-@Test
-public void getBlockNumber() throws IOException {
-    BigInteger blockNumber = web3j.getBlockNumber().send().getBlockNumber();
-    System.out.println(blockNumber);
-    assertTrue(blockNumber.compareTo(new BigInteger("0"))>= 0);
+public abstract class BaseTest {
+    protected BcosSDK bcosSDK;
+    protected Client client;
+
+    public void init() {
+        @SuppressWarnings("resource")
+        ApplicationContext context =
+                new ClassPathXmlApplicationContext("classpath:applicationContext.xml");
+
+        bcosSDK = context.getBean(BcosSDK.class);
+        client = bcosSDK.getClient(1);
+    }
 }
 ```
 
-**温馨提示：** Application类初始化了web3j对象，在业务代码需要的地方可用注解的方式直接使用，使用方式如下：
+### Java SDK API测试
 
-  ```java
-@Autowired
-private Web3j web3j
-  ```
+提供JavaSDKApiTest测试类测试Java SDK API。示例测试如下：
+
+```java
+  @Test
+  public void getBlockNumber() throws IOException {
+        init();
+        BigInteger blockNumber = client.getBlockNumber().getBlockNumber();
+        assertTrue(blockNumber.compareTo(new BigInteger("0")) >= 0);
+  }
+```
 
 ### Precompiled Service API测试
 
 提供PrecompiledServiceApiTest测试类测试Precompiled Service API。示例测试如下：
 
 ```java
-@Test
-public void testSystemConfigService() throws Exception {
-    SystemConfigSerivce systemConfigSerivce = new SystemConfigSerivce(web3j, credentials);
-    systemConfigSerivce.setValueByKey("tx_count_limit", "2000");
-    String value = web3j.getSystemConfigByKey("tx_count_limit").send().getSystemConfigByKey();
-    System.out.println(value);
-    assertTrue("2000".equals(value));
-}
+  @Test
+  public void testSystemConfigService() throws Exception {
+        init();
+        SystemConfigService systemConfigService =
+                new SystemConfigService(client, client.getCryptoSuite().createKeyPair());
+        systemConfigService.setValueByKey("tx_count_limit", "2000");
+        String value = client.getSystemConfigByKey("tx_count_limit").getSystemConfig();
+        System.out.println(value);
+        assertTrue("2000".equals(value));
+  }
 ```
-
-### Solidity合约文件转Java合约文件测试
-
-提供SolidityFunctionWrapperGeneratorTest测试类测试Solidity合约文件转Java合约文件。示例测试如下：
-
-```java
-@Test
-public void compileSolFilesToJavaTest() throws IOException {
-    File solFileList = new File("src/test/resources/contract");
-    File[] solFiles = solFileList.listFiles();
-
-    for (File solFile : solFiles) {
-
-        SolidityCompiler.Result res = SolidityCompiler.compile(solFile, true, ABI, BIN, INTERFACE, METADATA);
-        System.out.println("Out: '" + res.output + "'");
-        System.out.println("Err: '" + res.errors + "'");
-        CompilationResult result = CompilationResult.parse(res.output);
-        System.out.println("contractname  " + solFile.getName());
-        Path source = Paths.get(solFile.getPath());
-        String contractname = solFile.getName().split("\\.")[0];
-        CompilationResult.ContractMetadata a = result.getContract(solFile.getName().split("\\.")[0]);
-        System.out.println("abi   " + a.abi);
-        System.out.println("bin   " + a.bin);
-        FileUtils.writeStringToFile(new File("src/test/resources/solidity/" + contractname + ".abi"), a.abi);
-        FileUtils.writeStringToFile(new File("src/test/resources/solidity/" + contractname + ".bin"), a.bin);
-        String binFile;
-        String abiFile;
-        String tempDirPath = new File("src/test/java/").getAbsolutePath();
-        String packageName = "org.fisco.bcos.temp";
-        String filename = contractname;
-        abiFile = "src/test/resources/solidity/" + filename + ".abi";
-        binFile = "src/test/resources/solidity/" + filename + ".bin";
-        SolidityFunctionWrapperGenerator.main(Arrays.asList(
-                "-a", abiFile,
-                "-b", binFile,
-                "-p", packageName,
-                "-o", tempDirPath
-        ).toArray(new String[0]));
-    }
-    System.out.println("generate successfully");
-}
-```
-
-该测试案例将src/test/resources/contract目录下的所有Solidity合约文件(默认提供HelloWorld合约)均转为相应的abi和bin文件，保存在src/test/resources/solidity目录下。然后将abi文件和对应的bin文件组合转换为Java合约文件，保存在src/test/java/org/fisco/bcos/temp目录下。SDK将利用Java合约文件进行合约部署与调用。
 
 ### 部署和调用合约测试
 
 提供ContractTest测试类测试部署和调用合约。示例测试如下：
 
 ```java
-@Test
-public void deployAndCallHelloWorld() throws Exception {
-    //deploy contract
-    HelloWorld helloWorld = HelloWorld.deploy(web3j, credentials, new StaticGasProvider(gasPrice, gasLimit)).send();
-    if (helloWorld != null) {
-        System.out.println("HelloWorld address is: " + helloWorld.getContractAddress());
-        //call set function
-        helloWorld.set("Hello, World!").send();
-        //call get function
-        String result = helloWorld.get().send();
-        System.out.println(result);
-        assertTrue( "Hello, World!".equals(result));
-    }
-}
+ @Test
+  public void deployAndCallHelloWorld() throws Exception {
+        init();
+        // deploy contract
+        HelloWorld helloWorld = HelloWorld.deploy(client, client.getCryptoSuite().createKeyPair());
+        if (helloWorld != null) {
+            System.out.println("HelloWorld address is: " + helloWorld.getContractAddress());
+            // call set function
+            helloWorld.set("Hello, World!");
+            // call get function
+            String result = helloWorld.get();
+            System.out.println(result);
+            assertTrue("Hello, World!".equals(result));
+        }
+  }
 ```
 
 ## 贡献代码

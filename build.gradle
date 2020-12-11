@@ -41,19 +41,13 @@ repositories {
 }
 
 dependencies {
-	compile 'org.springframework.boot:spring-boot-starter-logging'
 	compile 'org.codehaus.groovy:groovy-all:2.5.6'
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
-	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-
-  compile 'org.fisco-bcos:web3sdk:2.3.0'
+    compile 'org.fisco-bcos.java-sdk:fisco-bcos-java-sdk:2.8.0-SNAPSHOT'
 }
 
 configurations {
-	all {
-		exclude group: 'org.slf4j', module: 'slf4j-log4j12'
-	}
 	compileOnly {
 		extendsFrom annotationProcessor
 	}
