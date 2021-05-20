@@ -7,7 +7,7 @@
 
 本例中采用HelloWorld合约，该合约位于src/main/contracts目录下。为了部署该合约，可以采用两种做法：
 - 使用[控制台](https://fisco-bcos-documentation.readthedocs.io/zh_CN/latest/docs/installation.html#id8)部署合约;
-- 运行本项目中测试用例中的[deploy](https://github.com/FISCO-BCOS/spring-boot-starter/blob/main/src/test/java/org/example/demo/Demos.java)用例部署合约。、
+- 运行本项目中测试用例中的[deploy](src/test/java/org/example/demo/Demos.java)用例部署合约
 
 部署完成后，请记录合约地址，后续会用到。
 
