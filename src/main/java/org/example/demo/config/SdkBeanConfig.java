@@ -32,10 +32,14 @@ public class SdkBeanConfig {
         Client client = new BcosSDK(configOption).getClient(systemConfig.getGroupId());
 
         BigInteger blockNumber = client.getBlockNumber().getBlockNumber();
-        log.info("Chain connect successful. Current block number {}", blockNumber);
+        if (log.isInfoEnabled()) {
+            log.info("Chain connect successful. Current block number {}", blockNumber);
+        }
 
         configCryptoKeyPair(client);
-        log.info("is Gm:{}, address:{}", client.getCryptoSuite().cryptoTypeConfig == 1, client.getCryptoSuite().getCryptoKeyPair().getAddress());
+        if (log.isInfoEnabled()) {
+            log.info("Your account is Gm:{}, address:{}", client.getCryptoSuite().cryptoTypeConfig == 1, client.getCryptoSuite().getCryptoKeyPair().getAddress());
+        }
         return client;
     }
 

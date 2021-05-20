@@ -1,11 +1,11 @@
 package org.example.demo.constants;
 
 public class ContractConstants {
-  public static String HelloWorldAbi;
+  public static final String HelloWorldAbi;
 
-  public static String HelloWorldBinary;
+  public static final String HelloWorldBinary;
 
-  public static String HelloWorldGmBinary;
+  public static final String HelloWorldGmBinary;
 
   static {
     try {
