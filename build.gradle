@@ -1,64 +1,98 @@
-plugins {
-	id 'org.springframework.boot' version '2.1.4.RELEASE'
-	id 'java'
-  id 'com.github.sherter.google-java-format' version '0.8'
+buildscript {
+    repositories {
+        mavenCentral()
+        maven { url "http://maven.aliyun.com/nexus/content/groups/public/"}
+        maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
+        mavenLocal()
+
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:2.1.1.RELEASE")
+    }
 }
-
-apply plugin: 'io.spring.dependency-management'
-apply plugin: 'idea'
+plugins {
+    id 'org.springframework.boot' version '2.1.1.RELEASE'
+    id 'com.github.sherter.google-java-format' version '0.8'
+}
+apply plugin: 'java'
 apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'maven'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
 
-description = 'Spring Boot Starter'
-
-group = 'com.example'
-version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
+group = 'org.example'
+version = '1.0.0-SNAPSHOT'
 
-googleJavaFormat {
-  options style: 'AOSP'
-  source = sourceSets*.allJava
-  include '**/*.java'
-  exclude '**/temp/*.java'
-  exclude '**/solidity/*.java'
-}
-
-verifyGoogleJavaFormat {
-  source = sourceSets*.allJava
-  include '**/*.java'
-  exclude '**/temp/*.java'
-  exclude '**/solidity/*.java'
-}
-
-check.dependsOn.remove(test)
-check.dependsOn.remove(verifyGoogleJavaFormat)
 
 repositories {
-    maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
-    maven { url "https://dl.bintray.com/ethereum/maven/" }
-    maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
+    mavenLocal()
     mavenCentral()
-}
-
-dependencies {
-	compile 'org.springframework.boot:spring-boot-starter-logging'
-	compile 'org.codehaus.groovy:groovy-all:2.5.6'
-	implementation 'org.springframework.boot:spring-boot-starter-actuator'
-	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-
-  compile 'org.fisco-bcos:web3sdk:2.3.0'
+    maven { url "http://maven.aliyun.com/nexus/content/groups/public/"}
+    maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
+    maven { url "https://dl.bintray.com/ethereum/maven/" }
+    maven { url "https://oss.sonatype.org/service/local/staging/deploy/maven2"}
 }
 
 configurations {
-	all {
-		exclude group: 'org.slf4j', module: 'slf4j-log4j12'
-	}
-	compileOnly {
-		extendsFrom annotationProcessor
-	}
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+    all {
+    }
 }
 
+dependencies {
+
+    compile 'org.springframework.boot:spring-boot-starter-web'
+    compile 'org.slf4j:slf4j-api:1.7.5'
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    testCompile('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.6.1'
+    compile ('org.fisco-bcos.java-sdk:fisco-bcos-java-sdk:2.7.2'){
+        exclude group: 'org.slf4j'
+    }
+}
+
+
+sourceSets {
+    main {
+        java {
+            srcDir 'src/main/java'
+        }
+        resources  {
+            srcDir 'src/main/resources'
+        }
+    }
+}
 test {
-    systemProperty "jdk.tls.namedGroups", "secp256k1"
+    useJUnitPlatform()
+}
+
+bootJar {
+    destinationDir file('dist')
+    archiveName project.name + '-exec.jar'
+    doLast {
+        copy {
+            from file('src/main/resources')
+            into 'dist'
+        }
+    }
+}
+
+googleJavaFormat {
+    options style: 'AOSP'
+    source = sourceSets*.allJava
+    include '**/*.java'
+}
+
+clean {
+    println "delete ${projectDir}/dist"
+    delete "${projectDir}/dist"
 }

@@ -19,6 +19,7 @@ hs_err_pid*
 
 */out/
 out/
+dist/
 gradle.properties
 
 # Ignore Gradle GUI config
