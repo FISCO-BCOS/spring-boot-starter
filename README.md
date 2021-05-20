@@ -36,12 +36,16 @@ server.port=8080
 
 ```
 其中：
-- java sdk configuration配置部分：
+- java sdk configuration配置部分与[javasdk](https://fisco-bcos-documentation.readthedocs.io/zh_CN/latest/docs/sdk/java_sdk/configuration.html)一致。就本例而言，用户需要：
     * 请将network.peers更换成实际的链节点监听地址。
-    * 其余配置请参考[javasdk](https://fisco-bcos-documentation.readthedocs.io/zh_CN/latest/docs/sdk/java_sdk/configuration.html)
-- Contract confguration包含合约配置，用户需要更换成前面部署过的合约地址。
-- System configuration配置部分：
-    * system.hexPrivateKey是16进制的私钥明文，可运行测试用例中的[keyGeneration](https://github.com/FISCO-BCOS/spring-boot-starter/blob/main/src/test/java/org/example/demo/Demos.java)生成。如果为空，系统会随机生成一个。
+    * cryptoMaterial.certPath设为conf
+
+- Contract confguration配置部分，需要配置：
+    * contract.helloWorldAddress设为前述HelloWorld合约地址
+
+- System configuration配置部分，需要配置：
+    * system.hexPrivateKey是16进制的私钥明文，可运行测试用例中的[keyGeneration](src/test/java/org/example/demo/Demos.java)生成。如果为空，系统会随机生成一个私钥。
+    * system.groupId设为目标群组，默认为1
 
 
 ## 4. 编译和运行
