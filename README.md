@@ -53,7 +53,7 @@ server.port=8080
 
 ```
 cd spring-boot-starter-demo
-gradle bootJar
+./gradlew bootJar
 cd dist
 ```
 会在dist目录生成spring-boot-starter-demo-exec.jar，可执行此jar包：
@@ -81,3 +81,16 @@ curl http://127.0.0.1:8080/hello/get
 ```
 ["hello"]
 ```
+
+
+## 加入我们的社区
+
+**FISCO BCOS开源社区**是国内活跃的开源社区，社区长期为机构和个人开发者提供各类支持与帮助。已有来自各行业的数千名技术爱好者在研究和使用FISCO BCOS。如您对FISCO BCOS开源技术及应用感兴趣，欢迎加入社区获得更多支持与帮助。
+
+![](https://raw.githubusercontent.com/FISCO-BCOS/LargeFiles/master/images/QR_image.png)
+
+## 相关链接
+
+- FISCO BCOS工程： [FISCO BCOS文档](https://fisco-bcos-documentation.readthedocs.io/zh_CN/latest/docs/introduction.html)。
+- Java Sdk： [JavaSdk文档](https://fisco-bcos-documentation.readthedocs.io/zh_CN/latest/docs/sdk/java_sdk/index.html)。
+- SpringBoot文档 [Spring Boot](https://spring.io/guides/gs/spring-boot/)。
