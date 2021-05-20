@@ -1,5 +1,7 @@
 package org.example.demo.config;
 
+import java.math.BigInteger;
+import java.util.Map;
 import lombok.extern.slf4j.Slf4j;
 import org.fisco.bcos.sdk.BcosSDK;
 import org.fisco.bcos.sdk.client.Client;
@@ -9,18 +11,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import java.math.BigInteger;
-import java.util.Map;
-
 @Configuration
 @Slf4j
 public class SdkBeanConfig {
 
-    @Autowired
-    private SystemConfig systemConfig;
+    @Autowired private SystemConfig systemConfig;
 
-    @Autowired
-    private BcosConfig bcosConfig;
+    @Autowired private BcosConfig bcosConfig;
 
     @Bean
     public Client client() throws Exception {
@@ -38,28 +35,34 @@ public class SdkBeanConfig {
 
         configCryptoKeyPair(client);
         if (log.isInfoEnabled()) {
-            log.info("Your account is Gm:{}, address:{}", client.getCryptoSuite().cryptoTypeConfig == 1, client.getCryptoSuite().getCryptoKeyPair().getAddress());
+            log.info(
+                    "Your account is Gm:{}, address:{}",
+                    client.getCryptoSuite().cryptoTypeConfig == 1,
+                    client.getCryptoSuite().getCryptoKeyPair().getAddress());
         }
         return client;
     }
 
-    public void configNetwork(ConfigProperty configProperty){
+    public void configNetwork(ConfigProperty configProperty) {
         Map peers = bcosConfig.getNetwork();
         configProperty.setNetwork(peers);
     }
 
-    public void configCryptoMaterial(ConfigProperty configProperty){
+    public void configCryptoMaterial(ConfigProperty configProperty) {
         Map<String, Object> cryptoMaterials = bcosConfig.getCryptoMaterial();
         configProperty.setCryptoMaterial(cryptoMaterials);
     }
 
-    public void configCryptoKeyPair(Client client){
-        if(systemConfig.getHexPrivateKey() == null || systemConfig.getHexPrivateKey().isEmpty()){
+    public void configCryptoKeyPair(Client client) {
+        if (systemConfig.getHexPrivateKey() == null || systemConfig.getHexPrivateKey().isEmpty()) {
             return;
         }
-        if(systemConfig.getHexPrivateKey().startsWith("0x") || systemConfig.getHexPrivateKey().startsWith("0X")){
+        if (systemConfig.getHexPrivateKey().startsWith("0x")
+                || systemConfig.getHexPrivateKey().startsWith("0X")) {
             systemConfig.setHexPrivateKey(systemConfig.getHexPrivateKey().substring(2));
         }
-        client.getCryptoSuite().setCryptoKeyPair(client.getCryptoSuite().createKeyPair(systemConfig.getHexPrivateKey()));
+        client.getCryptoSuite()
+                .setCryptoKeyPair(
+                        client.getCryptoSuite().createKeyPair(systemConfig.getHexPrivateKey()));
     }
 }

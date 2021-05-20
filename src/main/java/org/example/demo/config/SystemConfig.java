@@ -6,11 +6,9 @@ import org.springframework.context.annotation.Configuration;
 
 @Data
 @Configuration
-@ConfigurationProperties(
-    prefix = "system"
-)
+@ConfigurationProperties(prefix = "system")
 public class SystemConfig {
-  private int groupId = 1;
+    private int groupId = 1;
 
-  private String hexPrivateKey;
+    private String hexPrivateKey;
 }

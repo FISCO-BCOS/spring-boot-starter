@@ -12,17 +12,16 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("hello")
 public class HelloController {
 
-    @Autowired
-    private HelloWorldService service;
+    @Autowired private HelloWorldService service;
 
     @GetMapping("set")
-    public String set(@RequestParam("n") String n) throws Exception{
+    public String set(@RequestParam("n") String n) throws Exception {
         HelloWorldSetInputBO input = new HelloWorldSetInputBO(n);
         return service.set(input).getTransactionReceipt().getTransactionHash();
     }
 
     @GetMapping("get")
-    public String get() throws Exception{
+    public String get() throws Exception {
         return service.get().getValues();
     }
 }

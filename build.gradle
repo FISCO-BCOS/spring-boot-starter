@@ -12,6 +12,7 @@ buildscript {
 }
 plugins {
     id 'org.springframework.boot' version '2.1.1.RELEASE'
+    id 'com.github.sherter.google-java-format' version '0.8'
 }
 apply plugin: 'java'
 apply plugin: 'eclipse'
@@ -83,6 +84,12 @@ bootJar {
             into 'dist'
         }
     }
+}
+
+googleJavaFormat {
+    options style: 'AOSP'
+    source = sourceSets*.allJava
+    include '**/*.java'
 }
 
 clean {

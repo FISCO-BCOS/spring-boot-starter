@@ -6,9 +6,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Data
 @Configuration
-@ConfigurationProperties(
-    prefix = "contract"
-)
+@ConfigurationProperties(prefix = "contract")
 public class ContractConfig {
-  private String helloWorldAddress;
+    private String helloWorldAddress;
 }
