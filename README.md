@@ -93,4 +93,4 @@ curl http://127.0.0.1:8080/hello/get
 
 - FISCO BCOS工程： [FISCO BCOS文档](https://fisco-bcos-documentation.readthedocs.io/zh_CN/latest/docs/introduction.html)。
 - Java Sdk： [JavaSdk文档](https://fisco-bcos-documentation.readthedocs.io/zh_CN/latest/docs/sdk/java_sdk/index.html)。
-- SpringBoot文档 [Spring Boot](https://spring.io/guides/gs/spring-boot/)。
+- SpringBoot文档： [Spring Boot](https://spring.io/guides/gs/spring-boot/)。
