@@ -7,7 +7,7 @@
 
 本例中采用HelloWorld合约，该合约位于src/main/contracts目录下。为了部署该合约，可以采用两种做法：
 - 使用[控制台](https://fisco-bcos-documentation.readthedocs.io/zh_CN/latest/docs/installation.html#id8)部署合约;
-- 运行本项目中测试用例中的[deploy](https://github.com/masonhunk/spring-boot-starter-demo/blob/main/src/test/java/org/example/demo/Demos.java)用例部署合约。、
+- 运行本项目中测试用例中的[deploy](https://github.com/FISCO-BCOS/spring-boot-starter/blob/main/src/test/java/org/example/demo/Demos.java)用例部署合约。、
 
 部署完成后，请记录合约地址，后续会用到。
 
@@ -41,7 +41,7 @@ server.port=8080
     * 其余配置请参考[javasdk](https://fisco-bcos-documentation.readthedocs.io/zh_CN/latest/docs/sdk/java_sdk/configuration.html)
 - Contract confguration包含合约配置，用户需要更换成前面部署过的合约地址。
 - System configuration配置部分：
-    * system.hexPrivateKey是16进制的私钥明文，可运行测试用例中的[keyGeneration](https://github.com/masonhunk/spring-boot-starter-demo/blob/main/src/test/java/org/example/demo/Demos.java)生成。如果为空，系统会随机生成一个。
+    * system.hexPrivateKey是16进制的私钥明文，可运行测试用例中的[keyGeneration](https://github.com/FISCO-BCOS/spring-boot-starter/blob/main/src/test/java/org/example/demo/Demos.java)生成。如果为空，系统会随机生成一个。
 
 
 ## 4. 编译和运行
