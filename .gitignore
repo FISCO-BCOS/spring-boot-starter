@@ -1,12 +1,53 @@
-.gradle/
-build/
-.classpath
-bin/
-.settings/
-.project
-dist/
-tmp/
-/.gradle/
-*.lck
-.idea/
+# Created by .ignore support plugin (hsz.mobi)
+### Java template
+*.class
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Package Files #
+*.war
+*.ear
+
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
+### Gradle template
+.gradle
+/build
+/log
+/logs
+
+*/out/
 out/
+dist/
+gradle.properties
+
+# Ignore Gradle GUI config
+gradle-app.setting
+
+# Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
+!gradle-wrapper.jar
+
+# Cache of project
+.gradletasknamecache
+
+# Work around https://youtrack.jetbrains.com/issue/IDEA-116898
+# gradle/wrapper/gradle-wrapper.properties
+
+.idea
+*.iml
+*.crt
+*.key
+src/test/resources/solidity/*
+src/test/java/org/fisco/bcos/temp/*
+# OS X
+.DS_Store
+
+/target
+
+# eclipse
+.classpath
+.project
+.settings/
+bin/
+
