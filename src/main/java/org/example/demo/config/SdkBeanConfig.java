@@ -1,7 +1,6 @@
 package org.example.demo.config;
 
 import lombok.extern.slf4j.Slf4j;
-import org.example.demo.BcosConfig;
 import org.fisco.bcos.sdk.BcosSDK;
 import org.fisco.bcos.sdk.client.Client;
 import org.fisco.bcos.sdk.config.ConfigOption;

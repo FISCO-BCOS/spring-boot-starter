@@ -1,9 +1,5 @@
 package org.example.demo.constants;
 
-import java.lang.Exception;
-import java.lang.RuntimeException;
-import java.lang.String;
-
 public class ContractConstants {
   public static String HelloWorldAbi;
 
