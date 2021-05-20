@@ -1,6 +1,10 @@
 # spring-boot-starter-demo
 
-本示例项目基于SpringBoot和JavaSdk方式来调用智能合约。若您仍想使用web3sdk方式访问智能合约，请参考https://github.com/FISCO-BCOS/spring-boot-starter/tree/master-web3sdk
+本示例项目基于SpringBoot+JavaSdk+Gradle方式来调用智能合约。
+
+若您仍想使用web3sdk方式访问智能合约，请参考[web3sdk示例](https://github.com/FISCO-BCOS/spring-boot-starter/tree/master-web3sdk)；
+
+若您想通过maven方式访问智能合约，请参考[maven示例](https://github.com/FISCO-BCOS/spring-boot-crud)
 
 
 ## 1. 部署合约
@@ -91,6 +95,9 @@ curl http://127.0.0.1:8080/hello/get
 
 ## 相关链接
 
-- FISCO BCOS工程： [FISCO BCOS文档](https://fisco-bcos-documentation.readthedocs.io/zh_CN/latest/docs/introduction.html)。
+- FISCO BCOS： [FISCO BCOS文档](https://fisco-bcos-documentation.readthedocs.io/zh_CN/latest/docs/introduction.html)。
 - Java Sdk： [JavaSdk文档](https://fisco-bcos-documentation.readthedocs.io/zh_CN/latest/docs/sdk/java_sdk/index.html)。
 - SpringBoot文档： [Spring Boot](https://spring.io/guides/gs/spring-boot/)。
+请参考[web3sdk示例](https://github.com/FISCO-BCOS/spring-boot-starter/tree/master-web3sdk)
+- Web3sdk示例：[web3sdk示例](https://github.com/FISCO-BCOS/spring-boot-starter/tree/master-web3sdk)；
+- Maven工程示例：[maven示例](https://github.com/FISCO-BCOS/spring-boot-crud)
