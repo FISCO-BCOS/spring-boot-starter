@@ -44,7 +44,7 @@ server.port=8080
     * contract.helloWorldAddress设为前述HelloWorld合约地址
 
 - System configuration配置部分，需要配置：
-    * system.hexPrivateKey是16进制的私钥明文，可运行测试用例中的[keyGeneration](src/test/java/org/example/demo/Demos.java)生成。如果为空，系统会随机生成一个私钥。
+    * system.hexPrivateKey是16进制的私钥明文，可运行测试用例中的[keyGeneration](src/test/java/org/example/demo/Demos.java)生成。该配置允许为空，系统会随机生成一个私钥。
     * system.groupId设为目标群组，默认为1
 
 
@@ -53,7 +53,7 @@ server.port=8080
 
 ```
 cd spring-boot-starter-demo
-./gradlew bootJar
+bash gradlew bootJar
 cd dist
 ```
 会在dist目录生成spring-boot-starter-demo-exec.jar，可执行此jar包：
@@ -67,7 +67,7 @@ set示例：
 ```
 curl http://127.0.0.1:8080/hello/set?n=hello
 ```
-返回示例：
+返回示例（表示交易哈希）：
 ```
 0x1c8b283daef12b38632e8a6b8fe4d798e053feb5128d9eaf2be77c324645763b
 ```
