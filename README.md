@@ -1,10 +1,10 @@
-# spring-boot-starter-demo
+# spring-boot-starter
 
-本示例项目基于SpringBoot+JavaSdk+Gradle方式来调用智能合约。
+本示例项目基于JavaSdk+Gradle+SpringBoot方式来调用智能合约，由[脚手架](https://github.com/WeBankBlockchain/SmartDev-Scaffold)生成。
 
-若您仍想使用web3sdk方式访问智能合约，请参考[web3sdk示例](https://github.com/FISCO-BCOS/spring-boot-starter/tree/master-web3sdk)；
+若您仍想使用Web3sdk+Gradle+SpringBoot方式访问智能合约，请参考[web3sdk示例](https://github.com/FISCO-BCOS/spring-boot-starter/tree/master-web3sdk)；
 
-若您想通过maven方式访问智能合约，请参考[maven示例](https://github.com/FISCO-BCOS/spring-boot-crud)
+若您想通过JavaSdk+Maven+SpringBoot方式访问智能合约，请参考[maven示例](https://github.com/FISCO-BCOS/spring-boot-crud)
 
 
 ## 1. 部署合约
@@ -48,7 +48,7 @@ server.port=8080
     * contract.helloWorldAddress设为前述HelloWorld合约地址
 
 - System configuration配置部分，需要配置：
-    * system.hexPrivateKey是16进制的私钥明文，可运行测试用例中的[keyGeneration](src/test/java/org/example/demo/Demos.java)生成。该配置允许为空，系统会随机生成一个私钥。
+    * system.hexPrivateKey是16进制的私钥明文，可运行测试用例中的[keyGeneration](src/test/java/org/example/demo/Demos.java)生成。该配置允许为空，此时系统会随机生成一个私钥。
     * system.groupId设为目标群组，默认为1
 
 
@@ -56,13 +56,13 @@ server.port=8080
 您可以在idea内直接运行，也可以编译成可执行jar包后运行。以编译jar包方式为例：
 
 ```
-cd spring-boot-starter-demo
+cd spring-boot-starter
 bash gradlew bootJar
 cd dist
 ```
-会在dist目录生成spring-boot-starter-demo-exec.jar，可执行此jar包：
+会在dist目录生成spring-boot-starter-exec.jar，可执行此jar包：
 ```
-java -jar spring-boot-starter-demo-exec.jar
+java -jar spring-boot-starter-exec.jar
 ```
 随后，即可访问相关接口。
 
@@ -97,7 +97,7 @@ curl http://127.0.0.1:8080/hello/get
 
 - FISCO BCOS： [FISCO BCOS文档](https://fisco-bcos-documentation.readthedocs.io/zh_CN/latest/docs/introduction.html)。
 - Java Sdk： [JavaSdk文档](https://fisco-bcos-documentation.readthedocs.io/zh_CN/latest/docs/sdk/java_sdk/index.html)。
+- 脚手架：[脚手架文档](https://smartdev-doc.readthedocs.io/zh_CN/latest/docs/WeBankBlockchain-SmartDev-Scaffold/intro.html)。
 - SpringBoot文档： [Spring Boot](https://spring.io/guides/gs/spring-boot/)。
-请参考[web3sdk示例](https://github.com/FISCO-BCOS/spring-boot-starter/tree/master-web3sdk)
-- Web3sdk示例：[web3sdk示例](https://github.com/FISCO-BCOS/spring-boot-starter/tree/master-web3sdk)；
+- Web3sdk示例：[web3sdk示例](https://github.com/FISCO-BCOS/spring-boot-starter/tree/master-web3sdk)。
 - Maven工程示例：[maven示例](https://github.com/FISCO-BCOS/spring-boot-crud)
