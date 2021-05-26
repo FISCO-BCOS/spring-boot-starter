@@ -7,7 +7,7 @@
 若您想通过JavaSdk+Maven+SpringBoot方式访问智能合约，请参考[maven示例](https://github.com/FISCO-BCOS/spring-boot-crud)
 
 
-## 1.证书拷贝
+## 1. 证书拷贝
 
 请将配置文件拷贝到src/main/resources/conf目录下。
 
