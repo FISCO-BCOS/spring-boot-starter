@@ -9,7 +9,7 @@
 
 ## 1. 证书拷贝
 
-请将配置文件拷贝到src/main/resources/conf目录下。
+请将证书拷贝到src/main/resources/conf目录下。
 
 ## 2. 配置连接节点
 
