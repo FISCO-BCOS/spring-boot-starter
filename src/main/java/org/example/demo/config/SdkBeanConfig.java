@@ -1,12 +1,17 @@
 package org.example.demo.config;
 
 import java.math.BigInteger;
+import java.util.Arrays;
 import java.util.Map;
 import lombok.extern.slf4j.Slf4j;
+import org.example.demo.constants.ContractConstants;
 import org.fisco.bcos.sdk.BcosSDK;
 import org.fisco.bcos.sdk.client.Client;
 import org.fisco.bcos.sdk.config.ConfigOption;
 import org.fisco.bcos.sdk.config.model.ConfigProperty;
+import org.fisco.bcos.sdk.model.TransactionReceipt;
+import org.fisco.bcos.sdk.transaction.manager.AssembleTransactionProcessor;
+import org.fisco.bcos.sdk.transaction.manager.TransactionProcessorFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,6 +23,8 @@ public class SdkBeanConfig {
     @Autowired private SystemConfig systemConfig;
 
     @Autowired private BcosConfig bcosConfig;
+
+    @Autowired private ContractConfig contractConfig;
 
     @Bean
     public Client client() throws Exception {
@@ -40,7 +47,27 @@ public class SdkBeanConfig {
                     client.getCryptoSuite().cryptoTypeConfig == 1,
                     client.getCryptoSuite().getCryptoKeyPair().getAddress());
         }
+
+        if (contractConfig.getHelloWorldAddress() == null
+                || contractConfig.getHelloWorldAddress().isEmpty()) {
+            contractConfig.setHelloWorldAddress(deploy(client));
+        }
         return client;
+    }
+
+    private String deploy(Client client) throws Exception {
+        AssembleTransactionProcessor txProcessor =
+                TransactionProcessorFactory.createAssembleTransactionProcessor(
+                        client, client.getCryptoSuite().getCryptoKeyPair());
+        String abi = ContractConstants.HelloWorldAbi;
+        String bin = ContractConstants.HelloWorldBinary;
+        TransactionReceipt receipt =
+                txProcessor.deployAndGetResponse(abi, bin, Arrays.asList()).getTransactionReceipt();
+        if (receipt.isStatusOK()) {
+            return receipt.getContractAddress();
+        } else {
+            throw new RuntimeException("Deploy failed");
+        }
     }
 
     public void configNetwork(ConfigProperty configProperty) {
