@@ -7,19 +7,11 @@
 若您想通过JavaSdk+Maven+SpringBoot方式访问智能合约，请参考[maven示例](https://github.com/FISCO-BCOS/spring-boot-crud)
 
 
-## 1. 部署合约
-
-本例中采用HelloWorld合约，该合约位于src/main/contracts目录下。为了部署该合约，可以采用两种做法：
-- 使用[控制台](https://fisco-bcos-documentation.readthedocs.io/zh_CN/latest/docs/installation.html#id8)部署合约;
-- 运行本项目中测试用例中的[deploy](src/test/java/org/example/demo/Demos.java)用例部署合约
-
-部署完成后，请记录合约地址，后续会用到。
-
-## 2.证书拷贝
+## 1.证书拷贝
 
 请将配置文件拷贝到src/main/resources/conf目录下。
 
-## 3. 配置连接节点
+## 2. 配置连接节点
 
 请修改application.properties，该文件包含如下信息：
 ```
@@ -27,9 +19,6 @@
 cryptoMaterial.certPath=conf
 network.peers[0]=127.0.0.1:20200
 #network.peers[1]=127.0.0.1:20201
-
-### Contract configuration
-contract.helloWorldAddress=
 
 ### System configuration
 system.groupId=1
@@ -44,15 +33,12 @@ server.port=8080
     * 请将network.peers更换成实际的链节点监听地址。
     * cryptoMaterial.certPath设为conf
 
-- Contract confguration配置部分，需要配置：
-    * contract.helloWorldAddress设为前述HelloWorld合约地址
-
 - System configuration配置部分，需要配置：
     * system.hexPrivateKey是16进制的私钥明文，可运行测试用例中的[keyGeneration](src/test/java/org/example/demo/Demos.java)生成。该配置允许为空，此时系统会随机生成一个私钥。
     * system.groupId设为目标群组，默认为1
 
 
-## 4. 编译和运行
+## 3. 编译和运行
 您可以在idea内直接运行，也可以编译成可执行jar包后运行。以编译jar包方式为例：
 
 ```
