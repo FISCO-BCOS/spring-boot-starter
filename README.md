@@ -22,7 +22,7 @@ network.peers[0]=127.0.0.1:20200
 
 ### System configuration
 system.groupId=1
-system.privateKey=
+system.hexPrivateKey=
 
 ### Springboot configuration
 server.port=8080
