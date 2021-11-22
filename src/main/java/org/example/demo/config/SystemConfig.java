@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @ConfigurationProperties(prefix = "system")
 public class SystemConfig {
-    private int groupId = 1;
+    private String groupName = "group";
 
     private String hexPrivateKey;
 }

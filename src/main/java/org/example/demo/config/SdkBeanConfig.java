@@ -33,7 +33,7 @@ public class SdkBeanConfig {
         configCryptoMaterial(property);
 
         ConfigOption configOption = new ConfigOption(property);
-        Client client = new BcosSDK(configOption).getClient(systemConfig.getGroupId());
+        Client client = new BcosSDK(configOption).getClient(systemConfig.getGroupName());
 
         BigInteger blockNumber = client.getBlockNumber().getBlockNumber();
         if (log.isInfoEnabled()) {
@@ -88,8 +88,6 @@ public class SdkBeanConfig {
                 || systemConfig.getHexPrivateKey().startsWith("0X")) {
             systemConfig.setHexPrivateKey(systemConfig.getHexPrivateKey().substring(2));
         }
-        client.getCryptoSuite()
-                .setCryptoKeyPair(
-                        client.getCryptoSuite().createKeyPair(systemConfig.getHexPrivateKey()));
+        client.getCryptoSuite().setCryptoKeyPair(client.getCryptoSuite().getCryptoKeyPair());
     }
 }

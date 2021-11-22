@@ -17,6 +17,7 @@
 ```
 ### Java sdk configuration
 cryptoMaterial.certPath=conf
+cryptoMaterial.useSMCrypto=false
 network.peers[0]=127.0.0.1:20200
 #network.peers[1]=127.0.0.1:20201
 
