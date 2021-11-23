@@ -33,7 +33,8 @@ public class SdkBeanConfig {
         configCryptoMaterial(property);
 
         ConfigOption configOption = new ConfigOption(property);
-        Client client = new BcosSDK(configOption).getClient(systemConfig.getGroupId());
+        String groupIdStr = String.valueOf(systemConfig.getGroupId());
+	Client client = new BcosSDK(configOption).getClient(groupIdStr);
 
         BigInteger blockNumber = client.getBlockNumber().getBlockNumber();
         if (log.isInfoEnabled()) {
