@@ -47,7 +47,7 @@ public class Demos {
         if (receipt.isStatusOK()) {
             System.out.println("Contract Address:" + receipt.getContractAddress());
         } else {
-            System.out.println("Status code:" + receipt.getStatus() + "-" + receipt.getMessage());
+            System.out.println("Status code:" + receipt.getStatus() + "-" + receipt.getStatusMsg());
         }
     }
 }
