@@ -22,6 +22,6 @@ public class HelloController {
 
     @GetMapping("get")
     public String get() throws Exception {
-        return service.get().getValues();
+        return (String) service.get().getResults().get(0).getValue();
     }
 }
