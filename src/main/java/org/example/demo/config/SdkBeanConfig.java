@@ -9,6 +9,7 @@ import org.fisco.bcos.sdk.BcosSDK;
 import org.fisco.bcos.sdk.client.Client;
 import org.fisco.bcos.sdk.config.ConfigOption;
 import org.fisco.bcos.sdk.config.model.ConfigProperty;
+import org.fisco.bcos.sdk.model.CryptoType;
 import org.fisco.bcos.sdk.model.TransactionReceipt;
 import org.fisco.bcos.sdk.transaction.manager.AssembleTransactionProcessor;
 import org.fisco.bcos.sdk.transaction.manager.TransactionProcessorFactory;
@@ -60,7 +61,10 @@ public class SdkBeanConfig {
                 TransactionProcessorFactory.createAssembleTransactionProcessor(
                         client, client.getCryptoSuite().getCryptoKeyPair());
         String abi = ContractConstants.HelloWorldAbi;
-        String bin = ContractConstants.HelloWorldBinary;
+        String bin =
+                (client.getCryptoSuite().getCryptoTypeConfig() == CryptoType.ECDSA_TYPE)
+                        ? ContractConstants.HelloWorldBinary
+                        : ContractConstants.HelloWorldGmBinary;
         TransactionReceipt receipt =
                 txProcessor.deployAndGetResponse(abi, bin, Arrays.asList()).getTransactionReceipt();
         if (receipt.isStatusOK()) {
