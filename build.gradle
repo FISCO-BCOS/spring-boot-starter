@@ -48,7 +48,7 @@ configurations.all {
 }
 
 dependencies {
-    compile ('org.fisco-bcos.java-sdk:fisco-bcos-java-sdk:3.1.0-SNAPSHOT')
+    compile ('org.fisco-bcos.java-sdk:fisco-bcos-java-sdk:3.0.0-rc1')
     compile ('org.springframework.boot:spring-boot-starter-web')
     compileOnly ('org.projectlombok:lombok')
     annotationProcessor ('org.projectlombok:lombok')
