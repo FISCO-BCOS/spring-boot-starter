@@ -86,5 +86,4 @@ curl http://127.0.0.1:8080/hello/get
 - Java Sdk： [JavaSdk文档](https://fisco-bcos-documentation.readthedocs.io/zh_CN/latest/docs/sdk/java_sdk/index.html)。
 - 脚手架：[脚手架文档](https://smartdev-doc.readthedocs.io/zh_CN/latest/docs/WeBankBlockchain-SmartDev-Scaffold/intro.html)。
 - SpringBoot文档： [Spring Boot](https://spring.io/guides/gs/spring-boot/)。
-- Web3sdk示例：[web3sdk示例](https://github.com/FISCO-BCOS/spring-boot-starter/tree/master-web3sdk)。
 - Maven工程示例：[maven示例](https://github.com/FISCO-BCOS/spring-boot-crud)
