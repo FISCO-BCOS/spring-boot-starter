@@ -1,25 +1,13 @@
-buildscript {
-    repositories {
-        mavenCentral()
-        maven { url "http://maven.aliyun.com/nexus/content/groups/public/"}
-        maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
-        mavenLocal()
-
-    }
-    dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:2.1.1.RELEASE")
-    }
-}
 plugins {
-    id 'org.springframework.boot' version '2.1.1.RELEASE'
+    id 'org.springframework.boot' version '2.6.1'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id 'com.github.sherter.google-java-format' version '0.8'
 }
+
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'idea'
 apply plugin: 'maven'
-apply plugin: 'org.springframework.boot'
-apply plugin: 'io.spring.dependency-management'
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
@@ -47,7 +35,18 @@ configurations.all {
     resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
 }
 
+def log4j_version="2.15.0"
+List logger = [
+        "org.apache.logging.log4j:log4j-api:$log4j_version",
+    //    "org.apache.logging.log4j:log4j-core:$log4j_version",
+    //    "org.apache.logging.log4j:log4j-slf4j-impl:$log4j_version",
+    //    "org.apache.logging.log4j:log4j-to-slf4j:$log4j_version",
+    //    "org.apache.logging.log4j:log4j-web:$log4j_version"
+]
+
 dependencies {
+    implementation 'junit:junit:4.13.1'
+    compile logger
     compile ('org.fisco-bcos.java-sdk:fisco-bcos-java-sdk:3.0.0-rc1')
     compile ('org.springframework.boot:spring-boot-starter-web')
     compileOnly ('org.projectlombok:lombok')
