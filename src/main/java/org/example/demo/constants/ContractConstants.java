@@ -18,12 +18,12 @@ public class ContractConstants {
                     org.apache.commons.io.IOUtils.toString(
                             Thread.currentThread()
                                     .getContextClassLoader()
-                                    .getResource("bin/ecc/HelloWorld.bin"));
+                                    .getResource("bin/HelloWorld.bin"));
             HelloWorldGmBinary =
                     org.apache.commons.io.IOUtils.toString(
                             Thread.currentThread()
                                     .getContextClassLoader()
-                                    .getResource("bin/sm/HelloWorld.bin"));
+                                    .getResource("bin/HelloWorldSM.bin"));
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
