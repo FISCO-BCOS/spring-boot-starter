@@ -31,7 +31,7 @@ network.peers[0]=127.0.0.1:20200
         #network.peers[1]=127.0.0.1:20201
 
         ### System configuration
-system.groupId=group0
+system.groupId=group
 system.hexPrivateKey=
 
         ### Springboot configuration
@@ -46,7 +46,7 @@ server.port=8080
 
 - System configuration配置部分，需要配置：
   - system.hexPrivateKey是16进制的私钥明文，可运行Demos.java中的`keyGeneration`生成（文件路径：src/test/java/org/example/demo/Demos.java）。该配置允许为空，此时系统会随机生成一个私钥。
-  - system.groupId设为目标群组，默认为group0
+  - system.groupId设为目标群组，默认为group
 
 Demos.java 代码如下：（**以项目最新文件为准**）
 
