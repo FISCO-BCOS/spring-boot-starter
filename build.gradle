@@ -47,7 +47,7 @@ List logger = [
 dependencies {
     implementation 'junit:junit:4.13.1'
     compile logger
-    compile ('org.fisco-bcos.java-sdk:fisco-bcos-java-sdk:3.0.0-rc1')
+    compile ('org.fisco-bcos.java-sdk:fisco-bcos-java-sdk:3.0.0-rc2-SNAPSHOT')
     compile ('org.springframework.boot:spring-boot-starter-web')
     compileOnly ('org.projectlombok:lombok')
     annotationProcessor ('org.projectlombok:lombok')
