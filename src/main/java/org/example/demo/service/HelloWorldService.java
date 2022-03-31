@@ -7,11 +7,11 @@ import lombok.NoArgsConstructor;
 import org.example.demo.config.ContractConfig;
 import org.example.demo.constants.ContractConstants;
 import org.example.demo.model.bo.HelloWorldSetInputBO;
-import org.fisco.bcos.sdk.client.Client;
-import org.fisco.bcos.sdk.transaction.manager.AssembleTransactionProcessor;
-import org.fisco.bcos.sdk.transaction.manager.TransactionProcessorFactory;
-import org.fisco.bcos.sdk.transaction.model.dto.CallResponse;
-import org.fisco.bcos.sdk.transaction.model.dto.TransactionResponse;
+import org.fisco.bcos.sdk.v3.client.Client;
+import org.fisco.bcos.sdk.v3.transaction.manager.AssembleTransactionProcessor;
+import org.fisco.bcos.sdk.v3.transaction.manager.TransactionProcessorFactory;
+import org.fisco.bcos.sdk.v3.transaction.model.dto.CallResponse;
+import org.fisco.bcos.sdk.v3.transaction.model.dto.TransactionResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
