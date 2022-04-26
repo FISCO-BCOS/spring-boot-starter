@@ -6,10 +6,32 @@
 
 若您想通过JavaSdk+Maven+SpringBoot方式访问智能合约，请参考[maven示例](https://github.com/FISCO-BCOS/spring-boot-crud)
 
+## 前置条件
+
+搭建FISCO BCOS区块链，具体步骤[参考这里](https://fisco-bcos-documentation.readthedocs.io/zh_CN/latest/docs/installation.html)。
+
+```bash
+# 直接从github克隆代码
+git clone https://github.com/FISCO-BCOS/spring-boot-starter
+
+# 若网络很慢，可从gittee克隆代码
+git clone https://gitee.com/FISCO-BCOS/spring-boot-starter
+```
 
 ## 1. 证书拷贝
 
-请将证书拷贝到src/main/resources/conf目录下。
+将节点所在目录`nodes/${ip}/sdk`下的ca.crt、sdk.crt和sdk.key文件拷贝到项目的`src/main/resources/conf`目录下供SDK使用(**FISCO BCOS 2.1以前，证书为ca.crt、node.crt和node.key**):
+
+设节点路径为`~/fisco/nodes/127.0.0.1`，则可使用如下命令拷贝SDK证书:
+
+```bash
+# 进入项目路径
+$ cd spring-boot-starter
+# 创建证书存放路径
+$ mkdir src/main/resources/conf
+# 拷贝SDK证书
+$ cp -r ~/fisco/nodes/127.0.0.1/sdk/* src/main/resources/conf/
+```
 
 ## 2. 配置连接节点
 
