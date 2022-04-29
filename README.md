@@ -16,6 +16,9 @@ git clone https://github.com/FISCO-BCOS/spring-boot-starter
 
 # 若网络很慢，可从gittee克隆代码
 git clone https://gitee.com/FISCO-BCOS/spring-boot-starter
+
+# 切换分支至2.x版本
+git checkout -b master-2.0 origin/master-2.0
 ```
 
 ## 1. 证书拷贝
@@ -35,7 +38,7 @@ $ cp -r ~/fisco/nodes/127.0.0.1/sdk/* src/main/resources/conf/
 
 ## 2. 配置连接节点
 
-请修改application.properties，该文件包含如下信息：
+请修改src/main/resources/application.properties，该文件包含如下信息：
 ```
 ### Java sdk configuration
 cryptoMaterial.certPath=conf
