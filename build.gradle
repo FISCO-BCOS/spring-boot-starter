@@ -1,30 +1,18 @@
-buildscript {
-    repositories {
-        mavenCentral()
-        maven { url "http://maven.aliyun.com/nexus/content/groups/public/"}
-        maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
-        mavenLocal()
-
-    }
-    dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:2.1.1.RELEASE")
-    }
-}
 plugins {
-    id 'org.springframework.boot' version '2.1.1.RELEASE'
+    id 'org.springframework.boot' version '2.6.7'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id 'com.github.sherter.google-java-format' version '0.8'
 }
+
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'idea'
 apply plugin: 'maven'
-apply plugin: 'org.springframework.boot'
-apply plugin: 'io.spring.dependency-management'
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 group = 'org.example'
-version = '2.9.0-SNAPSHOT'
+version = '2.9.0'
 
 
 repositories {
