@@ -35,7 +35,7 @@ configurations.all {
     resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
 }
 
-def log4j_version="2.17.1"
+def log4j_version="2.18.0"
 List logger = [
         "org.apache.logging.log4j:log4j-api:$log4j_version",
     //    "org.apache.logging.log4j:log4j-core:$log4j_version",
@@ -47,7 +47,7 @@ List logger = [
 dependencies {
     implementation 'junit:junit:4.13.1'
     compile logger
-    compile ('org.fisco-bcos.java-sdk:fisco-bcos-java-sdk:3.0.0-rc4')
+    compile ('org.fisco-bcos.java-sdk:fisco-bcos-java-sdk:3.0.0-SNAPSHOT')
     compile ('org.springframework.boot:spring-boot-starter-web')
     compileOnly ('org.projectlombok:lombok')
     annotationProcessor ('org.projectlombok:lombok')
