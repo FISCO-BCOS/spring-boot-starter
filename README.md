@@ -148,6 +148,38 @@ curl http://127.0.0.1:8080/hello/get
 ["hello"]
 ```
 
+获取区块高
+
+```shell
+curl http://127.0.0.1:8080/chain/blockNumber
+```
+
+获取区块
+
+```shell
+curl http://127.0.0.1:8080/chain/block\?number\=20
+```
+
+获取最新区块
+
+```shell
+curl http://127.0.0.1:8080/chain/latestBlock
+```
+
+获取交易
+
+```shell
+curl http://127.0.0.1:8080/chain/transaction\?hash\=0xfe859b6dd3429edf5ae728db141b9343a02961f9843049f5f88aa49748a9d982
+```
+
+获取回执
+
+```shell
+curl http://127.0.0.1:8080/chain/receipt\?hash\=0xfe859b6dd3429edf5ae728db141b9343a02961f9843049f5f88aa49748a9d982
+```
+
+
+
 ## 加入我们的社区
 
 **FISCO BCOS开源社区**是国内活跃的开源社区，社区长期为机构和个人开发者提供各类支持与帮助。已有来自各行业的数千名技术爱好者在研究和使用FISCO BCOS。如您对FISCO BCOS开源技术及应用感兴趣，欢迎加入社区获得更多支持与帮助。

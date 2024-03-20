@@ -51,3 +51,5 @@ src/test/java/org/fisco/bcos/temp/*
 .settings/
 bin/
 
+src/main/resources/conf/
+
