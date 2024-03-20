@@ -1,12 +1,13 @@
 package org.example.demo.service;
 
-import java.util.Arrays;
+import java.util.Collections;
 import javax.annotation.PostConstruct;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.example.demo.config.ContractConfig;
 import org.example.demo.constants.ContractConstants;
 import org.example.demo.model.bo.HelloWorldSetInputBO;
+import org.fisco.bcos.sdk.v3.BcosSDK;
 import org.fisco.bcos.sdk.v3.client.Client;
 import org.fisco.bcos.sdk.v3.transaction.manager.AssembleTransactionProcessor;
 import org.fisco.bcos.sdk.v3.transaction.manager.TransactionProcessorFactory;
@@ -26,27 +27,30 @@ public class HelloWorldService {
 
     @Autowired private ContractConfig contractConfig;
 
-    AssembleTransactionProcessor txProcessor;
+    @Autowired private BcosSDK bcosSDK;
 
     @PostConstruct
-    public void init() throws Exception {
-        this.txProcessor =
-                TransactionProcessorFactory.createAssembleTransactionProcessor(
-                        this.client, this.client.getCryptoSuite().getCryptoKeyPair());
+    public void init() {
         this.address = contractConfig.getHelloWorldAddress();
     }
 
     public TransactionResponse set(HelloWorldSetInputBO input) throws Exception {
-        return this.txProcessor.sendTransactionAndGetResponse(
+        AssembleTransactionProcessor txProcessor =
+                TransactionProcessorFactory.createAssembleTransactionProcessor(
+                        client, client.getCryptoSuite().getCryptoKeyPair());
+        return txProcessor.sendTransactionAndGetResponse(
                 this.address, ContractConstants.HelloWorldAbi, "set", input.toArgs());
     }
 
     public CallResponse get() throws Exception {
-        return this.txProcessor.sendCall(
-                this.client.getCryptoSuite().getCryptoKeyPair().getAddress(),
+        AssembleTransactionProcessor txProcessor =
+                TransactionProcessorFactory.createAssembleTransactionProcessor(
+                        client, client.getCryptoSuite().getCryptoKeyPair());
+        return txProcessor.sendCall(
+                client.getCryptoSuite().getCryptoKeyPair().getAddress(),
                 this.address,
                 ContractConstants.HelloWorldAbi,
                 "get",
-                Arrays.asList());
+                Collections.emptyList());
     }
 }

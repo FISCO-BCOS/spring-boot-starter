@@ -7,7 +7,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.example.demo.constants.ContractConstants;
 import org.fisco.bcos.sdk.v3.BcosSDK;
 import org.fisco.bcos.sdk.v3.client.Client;
-import org.fisco.bcos.sdk.v3.config.ConfigOption;
 import org.fisco.bcos.sdk.v3.config.model.ConfigProperty;
 import org.fisco.bcos.sdk.v3.model.CryptoType;
 import org.fisco.bcos.sdk.v3.model.TransactionReceipt;
@@ -21,6 +20,8 @@ import org.springframework.context.annotation.Configuration;
 @Slf4j
 public class SdkBeanConfig {
 
+    @Autowired private BcosSDK bcosSDK;
+
     @Autowired private SystemConfig systemConfig;
 
     @Autowired private BcosConfig bcosConfig;
@@ -29,12 +30,7 @@ public class SdkBeanConfig {
 
     @Bean
     public Client client() throws Exception {
-        ConfigProperty property = new ConfigProperty();
-        configNetwork(property);
-        configCryptoMaterial(property);
-
-        ConfigOption configOption = new ConfigOption(property);
-        Client client = new BcosSDK(configOption).getClient(systemConfig.getGroupName());
+        Client client = bcosSDK.getClient(systemConfig.getGroupName());
 
         BigInteger blockNumber = client.getBlockNumber().getBlockNumber();
         if (log.isInfoEnabled()) {
