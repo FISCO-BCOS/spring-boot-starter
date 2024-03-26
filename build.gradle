@@ -16,11 +16,10 @@ version = '1.0.0-SNAPSHOT'
 
 
 repositories {
-    mavenLocal()
     mavenCentral()
-    maven { url "http://maven.aliyun.com/nexus/content/groups/public/"}
+    maven { url "https://maven.aliyun.com/nexus/content/groups/public/" }
     maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
-    maven { url "https://oss.sonatype.org/service/local/staging/deploy/maven2"}
+    maven { url "https://oss.sonatype.org/service/local/staging/deploy/maven2" }
 }
 
 configurations {
@@ -33,30 +32,53 @@ configurations {
 
 configurations.all {
     resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
+    exclude group: 'org.yaml', module: 'snakeyaml'
 }
 
-def log4j_version= '2.22.1'
+def log4j_version = '2.22.1'
 List logger = [
         "org.apache.logging.log4j:log4j-api:$log4j_version",
-    //    "org.apache.logging.log4j:log4j-core:$log4j_version",
-    //    "org.apache.logging.log4j:log4j-slf4j-impl:$log4j_version",
+        //    "org.apache.logging.log4j:log4j-core:$log4j_version",
+        //    "org.apache.logging.log4j:log4j-slf4j-impl:$log4j_version",
         "org.apache.logging.log4j:log4j-to-slf4j:$log4j_version",
-    //    "org.apache.logging.log4j:log4j-web:$log4j_version"
+        //    "org.apache.logging.log4j:log4j-web:$log4j_version"
 ]
 
 dependencies {
-    implementation 'junit:junit:4.13.1'
     compile logger
-    compile ('org.fisco-bcos.java-sdk:fisco-bcos-java-sdk:3.7.0-SNAPSHOT')
-    compile ('org.springframework.boot:spring-boot-starter-web')
-    compileOnly ('org.projectlombok:lombok')
-    annotationProcessor ('org.projectlombok:lombok')
-
-    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+    implementation('org.fisco-bcos.java-sdk:fisco-bcos-java-sdk:3.7.0')
+    implementation('org.springframework.boot:spring-boot-starter-web:2.7.18'){
+        exclude group: 'org.springframework.boot', module: 'spring-boot-starter'
+        exclude group: 'org.springframework.boot', module: 'spring-boot-starter-json'
+        exclude group: 'org.springframework.boot', module: 'spring-boot-starter-tomcat'
+        exclude(group: 'org.springframework', module: 'spring-webmvc')
+        exclude(group: 'org.springframework', module: 'spring-web')
+    }
+    implementation('org.springframework.boot:spring-boot-starter:2.7.18'){
+    }
+    implementation group: 'org.apache.tomcat.embed', name: 'tomcat-embed-core', version: '9.0.87'
+    implementation('org.springframework.boot:spring-boot:2.7.18')
+    implementation('org.springframework.boot:spring-boot-starter-tomcat:2.7.18')
+    implementation('org.springframework.boot:spring-boot-autoconfigure:2.7.18')
+    implementation('org.springframework.boot:spring-boot-starter-json:2.7.18')
+    implementation('org.springframework.boot:spring-boot-starter-logging:2.7.18')
+    implementation('org.springframework:spring-web:5.3.33')
+    implementation('org.springframework:spring-expression:5.3.33')
+    implementation('org.springframework:spring-beans:5.3.33')
+    implementation('org.springframework:spring-context:5.3.33')
+    implementation('org.springframework:spring-core:5.3.33')
+    implementation('org.springframework:spring-webmvc:5.3.33')
+    compileOnly('org.projectlombok:lombok:1.18.32')
+    annotationProcessor('org.projectlombok:lombok:1.18.32')
+    implementation('com.fasterxml.jackson.core:jackson-databind:2.14.3') {
+        force true
+    }
+    testImplementation('org.springframework.boot:spring-boot-starter-test:2.7.18') {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }
-    testImplementation ('org.junit.jupiter:junit-jupiter-api:5.6.1')
-    testRuntimeOnly ('org.junit.jupiter:junit-jupiter-engine:5.6.1')
+    testImplementation 'junit:junit:4.13.1'
+    testImplementation('org.junit.jupiter:junit-jupiter-api:5.6.1')
+    testRuntimeOnly('org.junit.jupiter:junit-jupiter-engine:5.6.1')
 }
 
 
@@ -65,7 +87,7 @@ sourceSets {
         java {
             srcDir 'src/main/java'
         }
-        resources  {
+        resources {
             srcDir 'src/main/resources'
         }
     }
